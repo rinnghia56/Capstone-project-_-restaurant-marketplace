@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} 
+<link rel="stylesheet" href="{% static 'css/style_system_listrestaurant.css' %}"> 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-fullscreen/dist/leaflet.fullscreen.css" />
+{% endblock %}
+{% block content %}
+        <!-- Map -->
+        <div id = "map" style="height: 400px;"></div>
+        <p data-long="{{longitude}}" class="longitude_element" style="display: none;">{{longitude}}</p>
+        <p data-lat ="{{latitude}}" class="latitude_element" style="display: none;">{{latitude}}</p>
+        <p id="your_location" style="display: none;"></p>
+        <p id="position_restaurant" data-position = '{{positions}}' style="display: none"></p>
+        
+        <!-- Restaurant -->
+        <div class="restaurant">
+            <h1 class="title-heading">Restaurant ({{ vendor_count }} Restaurant's found)</h1>
+            <div class="group-author">
+                {% for vendor in vendors %}
+                    <div class="author">
+                        {% if vendor.is_open %}
+                            <div class="status">Open</div>
+                        {% else %}
+                            <div class="status close">Close</div>
+                        {% endif %}
+                        <div class="author__left">
+                            {% if vendor.user_profile.profile_picture %}
+                            <img src="{{ vendor.user_profile.profile_picture.url }}" class="author__img" alt="">
+                            {% else %}
+                            <img src="{% static 'img/img_vendor/restaurant_default.jpg' %}" class="author__img" alt="">
+                            {% endif %}
+                        </div>
+                        <div class="author__right">
+                            <h3 class="author__name">{{ vendor.vendor_name }}</h3>
+                            <p class="author__desc">
+                                <strong>Address:</strong>  {{ vendor.user_profile.address }}
+                            </p>
+                            <p class="author__distance"><strong>{{vendor.kms}} KM</strong> away from your location</p>
+                            <div class="author__action">
+                                <a class="btn-view" href="{% url 'vendor_detail' vendor.vendor_slug %}"><i class="fas fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <!-- End Restaurant -->
+{% endblock %}
+
+{% block footer %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js"></script>
+<script src="{% static 'js/search_location.js' %}"></script>
+{% include 'includes/footer.html' %}
+{% endblock %}

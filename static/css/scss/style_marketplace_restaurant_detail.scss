@@ -1,0 +1,319 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+// variable
+$green: #27ae60;
+$black: #130f40;
+$white: #ffffff;
+$light-color: #666;
+$light-bg: #f7f7f7;
+$border: 0.1rem solid rgba(0, 0, 0, 0.2);
+$box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+$primary: #fa4c53;
+$text-color: #291667;
+// function
+@mixin font($size) {
+    font-family: "Satisfy", cursive;
+    font-size: $size;
+    color: $green;
+}
+
+@mixin set_size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin grid($val) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+    gap: 1.5rem;
+}
+
+@mixin maxWidth($val) {
+    @media screen and (max-width: $val) {
+        @content;
+    }
+}
+
+@mixin flexbox(
+    $align: flex-start,
+    $justify: flex-start,
+    $flexdirection: row,
+    $flexwrap: nowrap
+) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $flexdirection;
+    flex-wrap: $flexwrap;
+}
+
+.restaurant-banner {
+    padding: 2.4rem;
+    &-container {
+        width: 100%;
+        height: 35rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        .bg {
+            border-radius: 1rem;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .context {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 1rem;
+            .restaurant-img {
+                border-radius: 1rem;
+                @include set_size(15rem, 15rem);
+                object-fit: cover;
+                max-width: calc(100% - 2.4rem);
+            }
+            .text {
+                max-width: 35rem;
+                color: #fff;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                line-height: 1.5;
+                font-family: "Open Sans", sans-serif;
+                .restaurant-name {
+                    font-size: 3rem;
+                }
+                .address {
+                    display: flex;
+                    gap: 1rem;
+                    align-items: center;
+                    font-size: 1.8rem;
+                }
+            }
+        }
+    }
+}
+
+.hour-restaurant {
+    position: absolute;
+    width: 34rem;
+    color: #000;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+
+    &:hover .list-hour{
+        visibility: visible;
+        opacity: 1;
+    }
+   
+
+
+    .item-hour-header {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        font-size: 1.8rem;
+        padding: 2rem 2rem;
+        font-weight: 400;
+        background: rgba(255, 255, 255, 0.314);
+        backdrop-filter: blur(20px);
+        border-radius: 1rem 0 1rem 1rem;
+
+        &::before {
+            position: absolute;
+            display: inline-block;
+            content: "";
+            bottom: -1rem;
+            left: 0;
+            right: 0;
+            height: 1rem;
+        }
+    }
+    .list-hour {
+        position: absolute;
+        top: 100%;
+        margin-top: 1rem;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.314);
+        backdrop-filter: blur(20px);
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        visibility: hidden;
+        opacity: 0;
+        height: 290px;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 999px;
+            background-color: #00c889;
+        }
+
+      
+
+        .item-hour {
+            font-size: 1.8rem;
+            padding: 2rem 2rem;
+            font-weight: 400;
+
+            &:hover {
+                background: #64baec;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.menu-restaurant {
+    padding: 2.4rem;
+    .title {
+        font-size: 2.5rem;
+        color: #1a0a3b;
+        font-weight: bold;
+        position: relative;
+        padding-bottom: 2rem;
+        display: inline-block;
+        &::after {
+            content: "";
+            display: inline-block;
+            @include set_size(4rem, 1rem);
+            background-color: #27ae60;
+            position: absolute;
+            border-radius: 999px;
+            left: 0;
+            bottom: 0;
+        }
+    }
+    .list-menu {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+
+        .menu-item {
+            border-radius: 99px 0 99px 99px;
+            border: 1px solid #00c889;
+            min-width: 14rem;
+            text-align: center;
+            transition: all 0.5s linear;
+            .text {
+                display: inline-block;
+                padding: 1rem 2rem;
+                color: #000;
+                font-weight: 400;
+            }
+            &:hover {
+                background-color: #00c889;
+                .text {
+                    color: #fff;
+                }
+            }
+            &.active {
+                background-color: #00c889;
+                .text {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+.product-food {
+    margin-top: 2rem;
+    padding: 2rem 2rem;
+    .product-heading {
+        font-size: 2.5rem;
+        color: #1a0a3b;
+        font-weight: bold;
+        position: relative;
+        padding-bottom: 2rem;
+        &::after {
+            content: "";
+            display: inline-block;
+            @include set_size(4rem, 1rem);
+            background-color: #27ae60;
+            position: absolute;
+            border-radius: 999px;
+            left: 0;
+            bottom: 0;
+        }
+    }
+    .group-food {
+        margin-top: 4rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+        .food-item {
+            padding: 2rem;
+            box-shadow: 0px 2px 12px 5px rgba(231, 231, 231, 0.74);
+            border-radius: 5%;
+            transition: all 0.3s linear;
+            background-color: #fff;
+            .food-img {
+                width: 100%;
+                height: 35rem;
+                object-fit: cover;
+                border-radius: 5%;
+            }
+            .vendor-name {
+                margin-top: 1rem;
+                color: #a8a6a9;
+                font-size: 1.4rem;
+                font-weight: bold;
+            }
+            .name-food {
+                margin-top: 1rem;
+                a {
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                    color: #000;
+                }
+            }
+            .row-content {
+                margin-top: 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .price-food {
+                font-size: 2rem;
+                border-radius: 1rem;
+                font-weight: bold;
+                color: #077169;
+            }
+            .icon-cart {
+                color: #3ba584;
+                font-size: 2.5rem;
+                display: inline-block;
+                padding: 1.5rem;
+                background: #eaf5eb;
+                border-radius: 50%;
+            }
+            &:hover {
+                transform: translateY(-4rem);
+                .food-img {
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+}
+
+@include maxWidth(1200px) {
+    .hour-restaurant {
+        top: 92%;
+        right: 0;
+    }
+}

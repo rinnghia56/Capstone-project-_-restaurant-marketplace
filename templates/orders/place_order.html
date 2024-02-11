@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_system_placeorder.css' %}"> {% endblock %}
+{% block content %}
+
+<div class="place-order">
+    <h1 class="title">Order</h1>
+    <div class="line"></div>
+
+    <div class="place-order-container"> 
+        <div class="shipping-info">
+            <h2 class="title-shipping"><span>Shipping</span></h2>
+            <div class="content-shipping">
+                <p class="text">Name: <span>{{order.name}}</span></p>
+                <p class="text">Email: <span>{{order.email}}</span></p>
+                <p class="text">Phone: <span>{{order.phone}}</span></p>
+                <p class="text">Shipping: <span>{{order.address}}</span></p>
+                <a href="{% url 'checkout' %}" class="btn-edit">Edit</a>
+            </div>
+            <div class="payment-method">
+                <h2 class="title-payment-method"><span>Payment Method</span></h2>
+                <p class="text">Method: <span>Paypal</span></p>
+            </div>
+            <div class="order-details">
+                <h2 class="title-order-details"><span>Order details</span></h2>
+                <div class="your-order">
+                    {% for item in cart_items %}
+                        <div class="row-order">
+                            <div class="col-img">
+                                <img src="{{ item.fooditem.image.url }}" alt="">
+                            </div>
+                            <div class="col-content">
+                                <a class="name-food" href="#!">{{ item.fooditem }}</a>
+                                <p class="name-restaurant">{{ item.fooditem.vendor }}</p>
+                                <div class="price-and-quantity">
+                                    <p class="quantity"><span>quantity: </span>{{ item.quantity }}</p>
+                                    <p class="price">$ {{item.fooditem.price}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor%}
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-info">
+            <h2 class="title-payment"><span>Order Summary</span></h2>
+            <div class="row-text">
+                <p class="desc"><span>Subtotal</span></p>
+                <p class="money">$ {{subtotal}}</p>
+            </div>
+            <div class="row-text">
+                <p class="desc"><span>Shipping fee</span></p>
+                <p class="money">$ {{shipping_fee}}</p>
+            </div>
+            <div class="row-text">
+                <p class="desc"><span>Total</span></p>
+                <p class="money">$ {{order.total}}</p>
+            </div>
+            <div id="paypal-button-container"></div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script>
+
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+
+    var grand_total = "{{grand_total}}"
+    var url ="{% url 'payments' %}"
+    var order_number = "{{order.order_number}}"
+    var order_complete = "{% url 'order_complete' %}"
+    const csrftoken = getCookie('csrftoken');
+    paypal.Buttons({
+         
+        //Set up transaction
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value:grand_total
+                    }
+                }]
+            })
+        },
+
+        // Finalize the transantion
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(orderData){
+                var transaction = orderData.purchase_units[0].payments.captures[0];
+                var transaction_id = transaction.id
+                var status = orderData.status
+                var payment_method = 'PayPal'
+                sendTransaction(transaction_id, payment_method, status);
+
+                const element = document.querySelector('#paypal-button-container')
+                element.innerHTML = ''
+                element.innerHTML =  "<h4 class='text-loading'>" + 
+                                            "<div class='load-animation'></div>" +
+                                            "<span>Please wait</span>" +
+                                      "</h4>"
+            });
+        }
+    }).render('#paypal-button-container')
+
+    // Send the data to payments view to store in the database
+    function sendTransaction(transaction_id, payment_method, status){
+            $.ajax({
+                type:"POST",
+                url:url,
+                data: {
+                    'order_number':order_number,
+                    'transaction_id':transaction_id,
+                    'payment_method':payment_method,
+                    'status':status,
+                    'csrfmiddlewaretoken':csrftoken
+                },
+                success: function (response){
+                    window.location.href = order_complete + '?order_no='+response.order_number + '&trans_id='+response.transaction_id
+                }
+            })
+    }
+
+
+</script>
+{% include 'includes/footer.html' %}
+{% endblock %}

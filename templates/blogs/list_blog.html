@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_blog_list_blog.css' %}"> {% endblock %}
+{% block content %}
+ <!-- Blog -->
+ <div class="blogs">
+    <!-- header -->
+    <header class="header-blog">
+        <a href="{% url 'home' %}" class="logo-web"> <i class="fas fa-utensils"></i> <span>Food</span></a>
+        <h1 class="title">Helping you become better everyday</h1>
+        <nav class="navbar-blog">
+            <ul>
+                <li>
+                    <a href="{% url 'list_blog' %}" style="text-transform: uppercase;">ALL</a>
+                </li>
+                {% for category in list_category_blog %}
+                <li>
+                    <a href="{% url 'list_blog_by_category' category.slug %}" style="text-transform: uppercase;">{{category.category_name}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+    <!-- courses -->
+    <div class="courses">
+        {% for post in list_post %}
+            <!-- Item 1 -->
+            <div class="item">
+                <img
+                    src="{{post.image.url}}"
+                    alt="course"
+                    class="course-img"
+                />
+                <div class="info">
+                    <p class="title">
+                        {{post.post_title}}
+                    </p>
+                </div>
+                <a href="{% url 'post_detail' post.slug %}" class="btn-view-blog">View</a>
+            </div>
+        {% endfor %}
+    </div>
+    <!-- blog main -->
+    <div class="blog-main">
+        <div class="content">
+            <img
+                src="https://iamafoodblog.b-cdn.net/wp-content/uploads/2022/09/walking-taco-5941w-2048x1366.webp"
+                alt="blog-main"
+                class="blog-main-img"
+            />
+            <p class="desc">
+                All the deliciousness of a hard taco in a portable, easy-to-eat and easy-to-make form factor.
+            </p>
+        </div>
+    </div>
+    <!-- blog -->
+    <div class="blog">
+        <div class="content">
+            <div class="group-item">
+                <!-- item 1 -->
+                <div class="item">
+                    <img
+                        src="https://iamafoodblog.b-cdn.net/wp-content/uploads/2021/08/rabokki-6080w-2048x1366.webp"
+                        alt=""
+                        class="blog-img"
+                    />
+                    <div class="info">
+                        <p class="desc">
+                            Ramen and rice cakes is carb on carb action and I am here for it.
+                        </p>
+                    </div>
+                </div>
+                <!-- item 1 -->
+                <div class="item">
+                    <img
+                        src="https://iamafoodblog.b-cdn.net/wp-content/uploads/2021/08/rabokki-6080w-2048x1366.webp"
+                        alt=""
+                        class="blog-img"
+                    />
+                    <div class="info">
+                        <p class="desc">
+                            Ramen and rice cakes is carb on carb action and I am here for it.
+                        </p>
+                    </div>
+                </div>
+                <!-- item 1 -->
+                <div class="item">
+                    <img
+                        src="https://iamafoodblog.b-cdn.net/wp-content/uploads/2021/08/rabokki-6080w-2048x1366.webp"
+                        alt=""
+                        class="blog-img"
+                    />
+                    <div class="info">
+                        <p class="desc">
+                            Ramen and rice cakes is carb on carb action and I am here for it.
+                        </p>
+                    </div>
+                </div>
+                <!-- item 1 -->
+                <div class="item">
+                    <img
+                        src="https://iamafoodblog.b-cdn.net/wp-content/uploads/2021/08/rabokki-6080w-2048x1366.webp"
+                        alt=""
+                        class="blog-img"
+                    />
+                    <div class="info">
+                        <p class="desc">
+                            Ramen and rice cakes is carb on carb action and I am here for it.
+                        </p>
+                    </div>
+                </div>
+                <!-- item 1 -->
+                <div class="item">
+                    <img
+                        src="https://iamafoodblog.b-cdn.net/wp-content/uploads/2021/08/rabokki-6080w-2048x1366.webp"
+                        alt=""
+                        class="blog-img"
+                    />
+                    <div class="info">
+                        <p class="desc">
+                            Ramen and rice cakes is carb on carb action and I am here for it.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Blog -->
+{% endblock %}

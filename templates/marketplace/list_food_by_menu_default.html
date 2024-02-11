@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_system_listfood.css' %}"> {% endblock %}
+{% block content %}
+<div class="menu-food">
+    <h2 class="menu-heading">Menu Category</h2>
+
+    <div class="group-menu">
+        <!-- item 1 -->
+        <div class="menu-item">
+            <div class="menu-img">
+                <a href="#!"><img src="{% static 'img/all.png'%}" alt=""></a>
+            </div>
+            <span><a href="{% url 'list_food_for_customer'%}">ALL</a></span>
+        </div>
+
+        {% for menu in list_category %}
+        <div class="menu-item {% if menu.slug in request.path %}active{% endif %}">
+            <div class="menu-img">
+                <a href="{% url 'list_food_by_menu_default' menu.slug %}">
+                    {% if menu.image %}
+                    <img src="{{menu.image.url}}" alt="">
+                    {% else %}
+                    <img src="{% static 'img_test/buger.png'%}" alt="">
+                    {% endif %}
+                </a>
+            </div>
+            <span><a href="{% url 'list_food_by_menu_default' menu.slug %}">{{menu.category_name}}</a></span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="product-food">
+    <h2 class="product-heading">Food</h2>
+    {% if page_obj %}
+    <div class="group-food">
+        {% for food in page_obj %}
+        <div class="food-item">
+            {% if food.image %}
+            <img src="{{food.image.url}}" alt="" class="food-img">
+            {% else %}
+            <img src="{% static 'img_test/steak-loi-vai-2.jpg'%}" alt="" class="food-img">
+            {% endif %}
+            <div class="food-item-content">
+                <p class="vendor-name">{{food.vendor.vendor_name}}</p>
+                <h3 class="name-food"><a href="{% url 'food_detail' food.slug %}">{{food.food_title}}</a></h3>
+                <div class="row-content">
+                    <p class="price-food">${{food.price}}</p>
+                    <a href="#!" class="icon-cart add_to_cart" data-id="{{ food.id }}" data-url="{% url 'add_to_cart' food.id %}"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    {%else%}
+        <div class="none-food">
+            <h3 class="heading">None Food</h3>
+            <div class="none-food-content">
+                <img src="{% static 'img/icon-sorry.png'%}" alt="" class="img-none">
+                <p class="desc">We will update more dishes for this category</p>
+            </div>
+        </div>
+    {% endif %}
+    </div>
+    <div class="pagination">
+        <ul class="context">
+            {% if page_obj.has_previous %}
+            <li>
+                <a href="?page=1">First</a>
+            </li>
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="#!">{{ page_obj.number }}</a>
+            </li>
+            {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+            <li>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            </li>
+            {% endif %}
+        </ul>
+</div>
+</div>
+<!-- End Product -->
+{% endblock %}
+
+{% block footer %}
+<script src="{% static 'js/cart.js' %}"></script>
+{% include 'includes/footer.html' %}
+
+{% endblock %}

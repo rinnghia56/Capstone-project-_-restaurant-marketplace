@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- home section starts  -->
+
+<section class="home" id="home">
+    <div class="content">
+        <span class="title">welcome foodies</span>
+        <h3>different spices for the different tastes 😋</h3>
+        <p>
+            We provide you with high-quality dishes from various restaurants, allowing you to indulge in exploring your own taste
+        </p>
+        <a href="{% url 'list_food_for_customer' %}" class="btn">order now</a>
+    </div>
+
+    <div class="image">
+        <img src="{% static 'img/home-img.png' %}" alt="" class="home-img" />
+        <img
+            src="{% static 'img/home-parallax-img.png' %}"
+            alt=""
+            class="home-parallax-img"
+        />
+    </div>
+</section>
+
+<!-- home section ends  -->
+
+<!-- category section starts  -->
+
+<!--  -->
+<div class="container-top-restaurant">
+    <h2 class="title">Menu Restaurant</h2>
+    <section class="top-restaurant">
+        {% for menu in list_category %}
+            <a href="{% url 'list_food_by_menu_default' menu.slug %}" class="box">
+                {% if menu.image %}
+                <img src="{{menu.image.url}}" alt="menu">
+                {% else %}
+                <img src="{% static 'img_test/buger.png'%}" alt="menu">
+                {% endif %}
+            </a>
+        {% endfor %}
+    </section>
+</div>
+<!-- category section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+    <div class="image">
+        <img src="{% static 'img/about-img.png' %}" alt="" />
+    </div>
+
+    <div class="content">
+        <span>why choose us?</span>
+        <h3 class="title">what's make our food delicious!</h3>
+        <p>
+            The restaurants we carefully select go through meticulous evaluations, from licenses to ingredient quality. In addition to that, they offer a wide variety of dishes and showcase exceptional culinary skills.
+        </p>
+        <a href="{% url 'about' %}" class="btn">read more</a>
+        <div class="icons-container">
+            <div class="icons">
+                <img src="{% static 'img/serv-1.png' %}" alt="" />
+                <h3>fast delivery</h3>
+            </div>
+            <div class="icons">
+                <img src="{% static 'img/serv-2.png' %}" alt="" />
+                <h3>fresh food</h3>
+            </div>
+            <div class="icons">
+                <img src="{% static 'img/serv-3.png' %}" alt="" />
+                <h3>best quality</h3>
+            </div>
+            <div class="icons">
+                <img src="{% static 'img/serv-4.png' %}" alt="" />
+                <h3>24/7 support</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- about section ends -->
+
+<!-- popular section starts  -->
+
+<section class="popular" id="popular">
+    <div class="heading">
+        <span>Choose From Most Popular Restaurants</span>
+        <h3>our special restaurant</h3>
+    </div>
+
+    <div class="box-container">
+        {% for food in foods %}
+        <div class="box" id="food-item-{{food.id}}">
+            <a href="#" class="fas fa-heart add_favorite_food" data-id="{{ food.id }}" data-url="{% url 'add_food_favorite' food.id %}"></a>
+            <div class="image">
+                <img src="{{food.image.url}}" alt="" />
+            </div>
+            <div class="content">
+                <h3>delicious food</h3>
+                <div class="stars">
+                    {% with food.rating as range_number %}
+                    {% for i in ""|rjust:range_number %}
+                     <i class="fas fa-star star"></i>
+                    {% endfor %}
+                    {% endwith %}
+                    <span> (50) </span>
+                </div>
+                <a href="{% url 'food_detail' food.slug %}" class="btn">View</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- popular section ends -->
+
+<!-- banner section starts  -->
+<section class="banner">
+    <div class="row-banner">
+        <div class="content">
+            <span>double cheese</span>
+            <h3>burger</h3>
+            <p>with cococola and fries</p>
+            <a href="#" class="btn">order now</a>
+        </div>
+    </div>
+
+    <div class="grid-banner">
+        <div class="grid">
+            <img src="{% static 'img/banner-1.png' %}" alt="" />
+            <div class="content">
+                <span>special offer</span>
+                <h3>upto 50% off</h3>
+                <a href="#" class="btn">order now</a>
+            </div>
+        </div>
+        <div class="grid">
+            <img src="{% static 'img/banner-2.png' %}" alt="" />
+            <div class="content center">
+                <span>special offer</span>
+                <h3>upto 25% extra</h3>
+                <a href="#" class="btn">order now</a>
+            </div>
+        </div>
+        <div class="grid">
+            <img src="{% static 'img/banner-3.png' %}" alt="" />
+            <div class="content">
+                <span>limited offer</span>
+                <h3>100% cashback</h3>
+                <a href="#" class="btn">order now</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- banner section ends -->
+
+<!-- blogs section starts  -->
+
+<section class="blogs" id="blogs">
+    <div class="heading">
+        <span>our blogs</span>
+        <h3>our daily stories</h3>
+    </div>
+
+    <div class="box-container">
+        {% for post in posts %}
+        <div class="box">
+            <div class="image">
+                <h3><i class="fas fa-calendar"></i>{{post.created_at}}</h3>
+                <img src="{{post.image.url}}" alt="" />
+            </div>
+            <div class="content">
+                <div class="tags">
+                    <a href="#"> <i class="fas fa-tag"></i> food / </a>
+                    <a href="#">
+                        <i class="fas fa-tag"></i> burger /
+                    </a>
+                    <a href="#"> <i class="fas fa-tag"></i> pizza </a>
+                </div>
+                <h3>{{post.post_title}}</h3>
+                <p>
+                    {{post.content}}
+                </p>
+                <a href="{% url 'post_detail' post.slug %}" class="btn">read more</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- blogs section ends -->
+{% endblock %}
+
+{% block footer %}
+<script src="{% static 'js/food_favorite.js' %}"></script>
+<script src="{% static 'js/get_foods_favorite.js' %}"></script>
+{% include 'includes/footer.html' %}
+
+{% endblock %}
+

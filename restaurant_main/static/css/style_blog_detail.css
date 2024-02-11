@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap");
+.post-detail {
+  font-family: "Montserrat", sans-serif;
+  width: 1200px;
+  max-width: calc(100% - 24px);
+  margin: 2rem auto;
+}
+.post-detail .post-title {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 3rem 0;
+}
+.post-detail .author {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1rem;
+}
+.post-detail .content {
+  margin-top: 2rem;
+  font-size: 1.6rem;
+  line-height: 1.8;
+  font-weight: 500;
+}
+.post-detail img {
+  margin-top: 3rem;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 2rem;
+}
+
+/*# sourceMappingURL=style_blog_detail.css.map */

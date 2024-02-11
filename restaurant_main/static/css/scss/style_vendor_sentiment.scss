@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
+// variable
+$light: #f9f9f9;
+$blue: #3c91e6;
+$light-blue: #cfe8ff;
+$grey: #eee;
+$dark-grey: #aaaaaa;
+$dark: #342e37;
+$red: #db504a;
+$yellow: #ffce26;
+$light-yellow: #fff2c6;
+$orange: #fd7238;
+$light-orange: #ffe0d3;
+// function
+@mixin font($size, $color) {
+    font-family: "Lato";
+    font-size: $size;
+    color: $color;
+}
+
+@mixin set_size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin grid($val) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+    gap: 1.5rem;
+}
+
+@mixin maxWidth($val) {
+    @media screen and (max-width: $val) {
+        @content;
+    }
+}
+
+@mixin flexbox(
+    $align: flex-start,
+    $justify: flex-start,
+    $flexdirection: row,
+    $flexwrap: nowrap
+) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $flexdirection;
+    flex-wrap: $flexwrap;
+}
+
+@mixin line_clamp($val) {
+    display: -webkit-box;
+    -webkit-line-clamp: var(--line-clamp, $val);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+// Code
+.sentiment {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+
+    .sentiment-left {
+        display: flex;
+        width: calc(70% - 1rem);
+        gap: 3rem;
+
+        .item-feeling {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            padding: 2rem 1rem;
+            height: 300px;
+            width: calc((100% / 3) - (6rem / 3));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 16px;
+
+            .title {
+                margin-top: 3rem;
+                text-align: center;
+                font-size: 2rem;
+                text-transform: capitalize;
+                font-weight: 700;
+                color: rgb(68, 131, 248);
+            }
+
+            .btn-sentiment {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 6rem;
+                border: none;
+                width: 90%;
+                height: 50px;
+                border-radius: 999px;
+                font-weight: 600;
+                color: #fff;
+                background-color: rgb(68, 131, 248);
+            }
+
+            i {
+                font-size: 8rem;
+                color: rgb(68, 131, 248);
+            }
+
+            &:nth-child(1) {
+                i {
+                    color: rgb(18, 196, 232);
+                }
+
+                .title {
+                    color: rgb(18, 196, 232);
+                }
+
+                .btn-sentiment {
+                    background-color: rgb(18, 196, 232);
+                }
+            }
+            &:nth-child(3) {
+                i {
+                    color: rgb(249, 62, 87);
+                }
+
+                .title {
+                    color: rgb(249, 62, 87);
+                }
+
+                .btn-sentiment {
+                    background: rgb(249, 62, 87);
+                }
+            }
+
+          
+        }
+    }
+
+    .sentiment-right {
+        padding: 0 1rem;
+        border-left: 4px solid #2c85e3;
+        width: calc(30% - 1rem);
+
+        .desc {
+            font-size: 1.8rem;
+            line-height: 1.5;
+
+            &:not(:first-child){
+                margin-top: 2rem;
+            }
+            span {
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.list-food {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(694px, 1fr));
+    font-family: "Open Sans", sans-serif;
+    gap: 2rem;
+    .food-item {
+        display: flex;
+        height: 240px;
+        border-radius: 1rem;
+        overflow: hidden;
+        gap: 1rem;
+        box-shadow: 0px 0px 20px rgba(99, 98, 98, 0.393);
+
+        .food-image {
+            width: calc(40% - 0.5rem);
+            height: 100%;
+         
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .food-content {
+            width: calc(60% - 0.5rem);
+            height: 100%;
+            padding: 1rem 2rem 1rem 1rem;
+            position: relative;
+
+            .food-name {
+                font-size: 2.5rem;
+                font-weight: 600;
+                line-height: 1.5;
+                color: #3c3c3c;
+                @include line_clamp(1);
+            }
+
+            .stars {
+                margin-top: 1rem;
+                display: flex;
+                gap: 1rem;
+                .star {
+                    font-size: 2rem;
+                    color: #ffce26;
+                }
+            }
+
+            .food-desc {
+                margin-top: 1rem;
+                font-size: 1.8rem;
+                line-height: 1.5;
+                @include line_clamp(2);
+            }
+
+            .price {
+                margin-top: 1rem;
+                color: #22beb7;
+                font-size: 1.8rem;
+                font-weight: bold;
+            }
+
+            .actions {
+                position: absolute;
+                bottom: 2rem;
+                right: 1rem;
+                display: flex;
+                gap: 1rem;
+                .action {
+                    padding: 1rem 2rem;
+                    border: 2px solid #69e5e9;
+                    color: #10cdcd;
+                    font-weight: bold;
+                    border-radius: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.3s linear;
+                    
+
+
+                    &:last-child {
+                        margin-right: 2rem;
+                    }
+
+                    &:hover {
+                        color: #fff;
+                        background-color: #69e5e9;
+                    }
+                }
+            }
+        }
+    }
+}

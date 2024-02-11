@@ -1,0 +1,95 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_profile.css' %}"> {% endblock %}
+{% block breadcrumb %}Profile{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="box-title">
+	<h2 class="box-heading">Manage your restaurant</h2>
+
+	<form class="form-update" action="{% url 'vprofile' %}" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="group-update-img">
+			<div class="update-img">
+				{% if profile.profile_picture %}
+				<img class="img-upload" src="{{profile.profile_picture.url}}" alt="Profile Picture">
+				{% else %}
+				<img class="img-upload" src="{% static 'img/img_vendor/restaurant_default.jpg' %}" alt="Profile Picture">
+				{% endif %}
+				<div class="form-img">
+					<label for="profile-picture-img" class="lbl-img">Update Profile Picture<i class="fas fa-upload"></i></label>
+					{{profile_form.profile_picture}}
+				</div>
+			</div>
+			<div class="update-img">
+				{% if profile.cover_photo %}
+				<img class="img-upload" src="{{profile.cover_photo.url}}" alt="Cover Photo">
+				{% else %}
+				<img class="img-upload" src="{% static 'img/img_vendor/background_default.jpg' %}" alt="Cover Photo">
+				{% endif %}
+				<div class="form-img">
+					<label for="cover-picture-img" class="lbl-img">Update Cover photo <i class="fas fa-upload"></i></label>
+					{{profile_form.cover_photo}}
+				</div>
+			</div>
+			<div class="update-img">
+				<img class="img-upload" src="{{vendor.vendor_license.url}}" alt="Vendor License">
+				<div class="form-img">
+					<label for="file__input" class="lbl-img">Update License <i class="fas fa-upload"></i></label>
+					{{vendor_form.vendor_license}}
+				</div>
+			</div>
+		</div>
+		<label class="text-danger">{{ profile_form.profile_picture.errors }}
+		</label>
+		<div class="row-input">
+			<div class="col-input">
+				<label for="" class="lbl-input">Restaurant name</label>
+				{{vendor_form.vendor_name}}
+			</div>
+			<div class="col-input">
+				<label for="" class="lbl-input">Adddress</label>
+				{{profile_form.address}}
+			</div>
+		</div>
+		<div class="row-input">
+			<div class="col-input">
+				<label for="" class="lbl-input">Country</label>
+				{{profile_form.country}}
+			</div>
+			<div class="col-input">
+				<label for="" class="lbl-input">State</label>
+				{{profile_form.state}}
+			</div>
+		</div>
+		<div class="row-input">
+			<div class="col-input">
+				<label for="" class="lbl-input">City</label>
+				{{profile_form.city}}
+			</div>
+			<div class="col-input">
+				<label for="" class="lbl-input">Pin Code</label>
+				{{profile_form.pin_code}}
+			</div>
+		</div>
+		<div class="row-input">
+			<div class="col-input">
+				<label for="" class="lbl-input">Lantitude</label>
+				{{profile_form.latitude}}
+			</div>
+			<div class="col-input">
+				<label for="" class="lbl-input">Longtitude</label>
+				{{profile_form.longitude}}
+			</div>
+		</div>
+
+		<div class="form-btn">
+			<button class="btn-update" type="submit">Update</button>
+		</div>
+	</form>
+</div>
+{% include 'includes/alerts.html'%}
+{% endblock %}
+{% block js %}
+ <script src="{% static '/js/v_profile.js' %}"></script>
+{% endblock %}

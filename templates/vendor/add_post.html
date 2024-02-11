@@ -1,0 +1,49 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} 
+<link rel="stylesheet" href="{% static 'css/style_vendor_addfood.css' %}"> 
+{% endblock %}
+{% block breadcrumb %}Add food{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="box-add">
+    <div class="box-add-back">
+        <button class="btn-back" onclick="history.back()" style="cursor: pointer;">Back</button>
+    </div>
+    <div class="box-add-header">
+        <h2 class="box-add-title" id="title-add-food">Add Post</h2>
+    </div>
+    <form class="form-add" action="{% url 'add_post' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row-add">
+            <div class="col-add">
+                <label for="" class="lbl-add">Category</label>
+                {{form.category}}
+            </div>
+            <div class="col-add">
+                <label for="" class="lbl-add">Post Title</label>
+                {{form.post_title}}
+            </div>
+        </div>
+        <!-- row-3 -->
+        <div class="row-add row-add-super">
+            <div class="col-add">
+                <label for="" class="lbl-add">Content</label>
+                {{form.content}}
+            </div>
+            <div class="col-add">
+                <label for="" class="lbl-add">Image</label>
+                {{form.image}}
+            </div>
+        </div>
+
+        <div class="form-submit">
+            <button type="submit" class="btn-submit">Create Post</button>
+        </div>
+    </form>
+</div>
+<script>
+    CKEDITOR.replace( 'id_content' );
+</script>
+{% include 'includes/alerts.html'%}
+{% endblock %}

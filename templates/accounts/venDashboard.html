@@ -1,0 +1,75 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_dashboard.css' %}"> {% endblock %}
+{% block breadcrumb %}Dashboard{% endblock %}
+{% block content %}
+<ul class="box-info">
+    <li>
+        <i class="fas fa-calendar-check bx"></i>
+        <span class="text">
+            <h3>{{orders_count}}</h3>
+            <p>Total Orders</p>
+        </span>
+    </li>
+    <li>
+        <i class="fas fa-money-check-alt bx"></i>
+        <span class="text">
+            <h3>${{total_revenue | floatformat:2}}</h3>
+            <p>Total revenue</p>
+        </span>
+    </li>
+    <li>
+        <i class="fas fa-hand-holding-usd bx"></i>
+        <span class="text">
+            <h3>${{current_month_revenue | floatformat:2}}</h3>
+            <p>This month</p>
+        </span>
+    </li>
+</ul>
+
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>Recent Orders</h3>
+            <i class="fas fa-search bx"></i>
+            <i class="fas fa-filter bx"></i>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Name</th>
+                    <th>Total</th>
+                    <th>Date Order</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in recent_orders %}
+                    <tr>
+                        <td>{{ order.order_number }}</td>
+                        <td>
+                            <img src="{% static 'img/img_vendor/restaurant_default.jpg'%}" />
+                            <p>{{ order.name }}</p>
+                        </td>
+                        <td>$ {{ order.get_total_by_vendor.grand_total}}</td>
+                        <td>{{ order.created_at }}</td>
+                        <td>
+                            <span class="status completed"
+                                >{{ order.status }}</span
+                            >
+                        </td>
+                        <td>
+                            <a href="{% url 'vendor_order_detail' order.order_number %}" class="btn-detail"
+                                >Detail</a
+                            >
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% include 'includes/alerts.html'%}
+{% endblock %}

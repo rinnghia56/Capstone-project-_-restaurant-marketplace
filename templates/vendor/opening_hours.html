@@ -1,0 +1,53 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_opening_hours.css' %}"> {% endblock %}
+{% block breadcrumb %}Opening hours{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="box-hours">
+    <div class="container-left">
+        <div class="table-custom">
+            <div class="row-heading">
+                <div class="col-heading"><p class="text">Day</p></div>
+                <div class="col-heading"><p class="text">Hours</p></div>
+                <div class="col-heading"><p class="text">Actions</p></div>
+            </div>
+            {% for hour in opening_hours %}
+            <div class="row-content" id="hour-{{hour.id}}">
+                <div class="col-content"><p class="text">{{ hour }}</p></div>
+                <div class="col-content"><p class="text">{% if hour.is_closed %}Closed{% else %}{{ hour.from_hour }} - {{ hour.to_hour }}{% endif %}</p></div>
+                <div class="col-content"><a href="#!" class="btn-remove remove-hour" data-url="{% url 'remove_opening_hours' hour.id %}">Remove</a></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <form class="container-right" id="opening_hours">
+        {% csrf_token %} 
+        <p class="title"> Choose Day</p>
+        <div class="select">
+            {{ form.day }}
+        </div>
+        <p class="title"> Choose from hour</p>
+        <div class="select select-from-hour">
+            {{ form.from_hour }}
+        </div>
+        <p class="title"> Choose to hour</p>
+        <div class="select select-to-hour">
+            {{ form.to_hour }}
+        </div>
+        <div class="gruop-checkbox">
+            <!-- <input type="checkbox" name="" value="" id="set_close"> -->
+            {{ form.is_closed }}
+            <label for="set_close">Set as Closed</label>
+        </div>
+        <div class="actions">
+            <input type="hidden" value="{% url 'add_opening_hours'%}" id="add_hour_url">
+            <button class="btn-add-hours add_hours">Add Hours</button>
+        </div>
+    </form>
+</div>
+{% include 'includes/alerts.html'%}
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/opening_hours.js'%}"></script>
+{% endblock %}

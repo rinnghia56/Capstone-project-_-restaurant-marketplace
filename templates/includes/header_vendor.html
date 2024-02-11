@@ -1,0 +1,26 @@
+    {% load static %}
+   <!-- NAVBAR -->
+   <nav>
+    <i class="fas fa-bars bx bx-menu"></i>
+    <a href="#" class="nav-link">Categories</a>
+    <form action="#">
+        <div class="form-input">
+            <input type="search" placeholder="Search..." />
+            <button type="submit" class="search-btn">
+                        <i class="fas fa-search bx bx-search"></i>
+                    </button>
+        </div>
+    </form>
+    <!-- <input type="checkbox" id="switch-mode" hidden />
+            <label for="switch-mode" class="switch-mode"></label> -->
+    <a href="#" class="notification">
+        {{vendor.user.username}}
+    </a>
+    <a href="#" class="profile">
+        {% if vendor.user_profile.profile_picture %}
+        <img src="{{ vendor.user_profile.profile_picture.url }}" alt="restaurant" class="restaurant-img">
+        {% else %}
+        <img src="{% static 'img/img_vendor/restaurant_default.jpg' %}" alt="restaurant" class="restaurant-img">
+        {% endif %}
+    </a>
+</nav>

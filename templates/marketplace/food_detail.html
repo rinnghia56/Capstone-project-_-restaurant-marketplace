@@ -1,0 +1,376 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} 
+<link rel="stylesheet" href="{% static 'css/style_system_fooddetail.css' %}" /> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+{% endblock %}
+{% block content %}
+<!-- Product Details -->
+<div class="product-detail">
+    <div class="product-detail-left">
+        <div class="product-detail-heading">
+            <div class="product-detail-image">
+                <div
+                    style="
+                        --swiper-navigation-color: #fff;
+                        --swiper-pagination-color: #fff;
+                    "
+                    class="swiper mySwiper2"
+                >
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img
+                                src="{{food.image.url}}"
+                            />
+                        </div> 
+                        {% for item in food_images %}
+                        <div class="swiper-slide">
+                            <img
+                                src="{{item.image.url}}"
+                            />
+                        </div> 
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div thumbsSlider="" class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img
+                                src="{{food.image.url}}"
+                            />
+                        </div>
+                        {% for item in food_images %}
+                        <div class="swiper-slide">
+                            <img
+                                src="{{item.image.url}}"
+                            />
+                        </div> 
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="product-detail-desc">
+                <h1 class="name-food">
+                    {{food.food_title}}
+                </h1>
+                <div class="stars-avg">
+                    {% for item in food_rating %}
+                        <i class="fas fa-star star"></i>
+                    {% endfor %}
+                    <i class="fas fa-user user"></i>
+                    <p class="quantity">{{food.rating_count}}</p>
+                </div>
+                <p class="status-food">
+                    Status: <span>Available</span>
+                </p>
+                <p class="component-food">
+                    Ingredients : {{food.ingredients |safe}}
+                </p>
+                <p class="note">
+                    Notice:  {{food.notice |safe}}
+                </p>
+
+                <p class="price">${{food.price}}</p>
+
+                <a href="#!" class="btn-cart add_to_cart"  data-id="{{ food.id }}" data-url="{% url 'add_to_cart' food.id %}">ADD CART</a>
+            </div>
+        </div>
+
+        <div class="product-detail-end">
+            <h2 class="title">Thông tin sản phẩm</h2>
+            <div class="desc">
+                {{food.description |safe}}
+            </div>
+            <img src="{{food.image.url}}" alt="">
+        </div>
+
+
+        <div class="product-detail-comment">
+            <form id="comment-form" method="post" action="{% url 'add_feedback' food.id %}" class="group-input">
+                {% csrf_token %}
+                {{form_comment.text}}
+                <button type="submit" class="btn-comment">Comment</button>
+            </form>
+
+            {% if comments %}
+            <div id="comments-section">
+                {% for comment in comments %}
+                    <div class="comment-user">
+                        {% if comment.user.userprofile.profile_picture %}
+                            <img src="{{comment.user.userprofile.profile_picture.url}}" alt="" class="user-img">
+                        {% else %}
+                            <img src="{% static 'img/img_vendor/restaurant_default.jpg' %}" alt="" class="user-img">
+                        {% endif %}
+                        <div class="comment-content">
+                                <p class="name-user">{{comment.user.first_name}} {{comment.user.last_name}}</p>
+                                <p class="comment-body" style="line-height: 1.8;">{{comment.text}}</p>
+                                <p class="date-comment">{{comment.created_at}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% else %}
+
+            {% endif %}
+        </div>
+
+        <div class="vote">
+            <h2>How do you feel about this product ?</h2>
+            <div class="stars">
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+            </div>
+            <button class="btn-vote" data-url="{% url 'add_rating' food.id %}">Vote</button>
+        </div>
+
+        <div class="product-detail-same">
+            <h2 class="title">Sản phẩm cùng loại</h2>
+            <div class="group-food">
+                {% for food in random_food_same %}
+                <div class="food-item">
+                    <a href="{% url 'food_detail' food.slug %}"><img src="{{food.image.url}}" alt="" class="food-img"></a>
+                    <div class="food-content">
+                        <p class="name-food"><a href="{% url 'food_detail' food.slug %}">{{food.food_title}}</a></p>
+                        <div class="row-content">
+                            <p class="price">${{food.price}}</p>
+                            <a href="#!" class="add_to_cart"  data-id="{{ food.id }}" data-url="{% url 'add_to_cart' food.id %}"><img src="{% static 'img/icon-cart.png'%}" alt="" class="icon-cart"></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="product-detail-right">
+        <div class="consult">
+            <div class="title">Tư vấn đặt hàng</div>
+            <div class="group-feature">
+                <div class="feature-item">
+                    <img
+                        src="{% static 'img/feature-contact.png'%}"
+                        class="feature-icon"
+                        alt=""
+                    />
+                    <div class="feature-content">
+                        <p class="feature-title">1900 3220</p>
+                        <p class="feature-desc">
+                            (8h30 - 12h15 & 13h30 - 19h15)
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img
+                        src="{% static 'img/feature-giao_hang_nhanh.png'%}"
+                        class="feature-icon"
+                        alt=""
+                    />
+                    <div class="feature-content">
+                        <p class="feature-title">Giao hàng nhanh</p>
+                        <p class="feature-desc">
+                            Giao hàng ngay sau 30 phút
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img
+                        src="{% static 'img/feature-icon_conca_web.png'%}"
+                        class="feature-icon"
+                        alt=""
+                    />
+                    <div class="feature-content">
+                        <p class="feature-title">Sản phẩm an toàn</p>
+                        <p class="feature-desc">
+                            Tiêu chuẩn GlobalGap, Organic
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img
+                        src="{% static 'img/feature-service_3.png'%}"
+                        class="feature-icon"
+                        alt=""
+                    />
+                    <div class="feature-content">
+                        <p class="feature-title">Mở ra là ăn</p>
+                        <p class="feature-desc">
+                            Thực phẩm được sơ chế sẵn
+                        </p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <img
+                        src="{% static 'img/feature-service_4.png'%}"
+                        class="feature-icon"
+                        alt=""
+                    />
+                    <div class="feature-content">
+                        <p class="feature-title">
+                            Tích điểm khách hàng
+                        </p>
+                        <p class="feature-desc">
+                            Tích điểm 1,5% giá trị đơn hàng
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="food-suggestion">
+            <div class="title">Sản phẩm</div>
+            <div class="group-feature">
+                {% for food in list_food_suggestion %}
+                <div class="feature-item">
+                    <img
+                        src="{{ food.image.url }}"
+                        class="feature-icon"
+                        alt=""
+                    />
+                    <div class="feature-content">
+                        <p class="feature-title"><a href="{% url 'food_detail' food.slug %}">{{food.food_title}}</a></p>
+                        <p class="feature-desc">
+                            ${{food.price}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Product Details -->
+{% endblock %}
+
+{%block footer%}
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+    });
+    var swiper2 = new Swiper(".mySwiper2", {
+        spaceBetween: 10,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        thumbs: {
+            swiper: swiper,
+        },
+    });
+</script>
+<script>
+    $(document).ready(function() {
+    $('#comment-form').submit(function(event) {
+      event.preventDefault();  // Prevent the default form submission
+      
+      var form = $(this);
+      var url = form.attr('action');
+      
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: form.serialize(),  // Serialize the form data
+        success: function(response) {
+          if (response.status === 'success') {
+            // Handle the successful response
+            var commentContent = response.comment_content;
+            var commentUser = response.comment_user;
+            var commentDate = response.comment_date;
+            var picture = response.picture
+            if(!picture) {
+                picture =  '/static/img/img_vendor/restaurant_default.jpg'
+            }
+            
+            // Create a new comment element and append it to the comments section
+            var commentElement = '<div class="comment-user">'
+                                +'<img src="' + picture + '" alt="Profile Picture" class="user-img">'
+                                +'<div class="comment-content">'
+                                +'<p class="name-user">'+commentUser+'</p>'
+                                 +'<p class="comment-body">'+ commentContent  +'</p>'
+                                + '<p class="date-comment">' + commentDate +'</p>'
+                                +'</div></div>'
+            
+
+            if ($('#comments-section').length === 0) {
+                // Tạo phần tử comments-section
+                var commentsSection = $('<div id="comments-section"></div>');
+                // Thêm commentsSection vào vị trí mong muốn trong HTML
+                $('.product-detail-comment').append(commentsSection);
+            }
+            
+            $('#comments-section').prepend(commentElement);
+                            
+            // Clear the form fields
+            form.find('input[type=text], textarea').val('');
+          }else if(response.status === 'login_required') {
+                     swal(response.message, "", "info").then(function () {
+                                window.location = "/accounts/login";
+                            });
+          }
+        }
+      });
+    });
+  });
+</script>
+<script>
+    $(document).ready(function() {
+           const stars = document.querySelectorAll(".stars .star");
+
+           stars.forEach((star, index) => {
+                if(index < parseInt('{{rating_value}}')) {
+                    star.classList.add("active")
+                }
+           })
+
+
+            stars.forEach((star, index1) => {
+                star.addEventListener("click", function () {
+                    stars.forEach((star, index2) => {
+                        index1 >= index2
+                            ? star.classList.add("active")
+                            : star.classList.remove("active");
+                    });
+                });
+            });
+
+            $(".btn-vote").on("click", function (e) {
+                event.preventDefault();
+                url = $(this).attr("data-url");
+                ratingValue = document.querySelectorAll('.stars .star.active').length
+                
+                $.ajax({
+                    type:'POST',
+                    url:url,
+                    data: {
+                    'rating': ratingValue,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.status == "login_required") {
+                            swal(response.message, "", "info").then(function () {
+                                window.location = "/accounts/login";
+                            });
+                        } else if (response.status == "Failed") {
+                            swal(response.message, "", "error");
+                        } else {
+                            swal(response.message, "", "success");
+                        }
+                      }
+                    })
+               })
+         })
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{% static 'js/cart.js' %}"></script>
+{% include 'includes/footer.html' %}
+{% endblock %}

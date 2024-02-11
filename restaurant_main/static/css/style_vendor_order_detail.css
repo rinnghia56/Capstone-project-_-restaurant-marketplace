@@ -1,0 +1,220 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
+.order-complete {
+  padding: 0 2rem;
+  background-color: #fff;
+  width: 1400px;
+  margin: 3rem auto;
+  max-width: calc(100% - 2.4rem);
+}
+.order-complete .title-order {
+  position: relative;
+  padding-bottom: 2rem;
+}
+.order-complete .title-order span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(to right, #64a2e5, #31d6b8);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.order-complete .title-order::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  border-radius: 999px;
+  width: 80px;
+  height: 8px;
+  background: linear-gradient(to right, #64a2e5, #31d6b8);
+}
+.order-complete .header-complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.order-complete .header-complete .img-complete {
+  width: 100px;
+  height: 100px;
+}
+.order-complete .header-complete .img-complete img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.order-complete .header-complete .title-header-order {
+  color: #2ecc71;
+  font-weight: 600;
+  font-size: 2.5rem;
+}
+.order-complete .header-complete .desc-header-order {
+  font-size: 1.6rem;
+}
+.order-complete .content-complete {
+  margin-top: 5rem;
+}
+.order-complete .content-complete .title-content span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(to right, #40c0ee, #47d8a3);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.order-complete .content-complete .desc-content {
+  margin-top: 1rem;
+}
+.order-complete .content-complete .row-info {
+  margin-top: 2rem;
+  display: flex;
+  gap: 4rem;
+  padding: 4rem 0;
+  border-top: 1px solid #56b9e3;
+  border-bottom: 1px solid #66e099;
+}
+.order-complete .content-complete .row-info .col-info {
+  width: calc(25% - 1rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.order-complete .content-complete .row-info .col-info .info-title {
+  color: #18b75a;
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 1.3;
+}
+.order-complete .content-complete .row-info .col-info .info-desc {
+  line-height: 1.5;
+  font-size: 1.8rem;
+}
+.order-complete .order-complete-group {
+  margin: 2rem 0 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.order-complete .order-complete-group .your-order {
+  width: 830px;
+  height: 472px;
+  overflow: auto;
+}
+.order-complete .order-complete-group .your-order::-webkit-scrollbar {
+  width: 5px;
+}
+.order-complete .order-complete-group .your-order::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to bottom, #62c9e3, #37e09d);
+  border-radius: 999px;
+}
+.order-complete .order-complete-group .your-order .row-order {
+  display: flex;
+  height: 200px;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #f7f7f7;
+}
+.order-complete .order-complete-group .your-order .row-order:not(:first-child) {
+  margin-top: 2rem;
+}
+.order-complete .order-complete-group .your-order .row-order .col-img {
+  width: 40%;
+}
+.order-complete .order-complete-group .your-order .row-order .col-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.order-complete .order-complete-group .your-order .row-order .col-content {
+  width: 60%;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.order-complete .order-complete-group .your-order .row-order .col-content .name-food {
+  font-size: 2rem;
+  color: #130f40;
+  font-weight: bold;
+}
+.order-complete .order-complete-group .your-order .row-order .col-content .name-restaurant {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  background-color: #27ae60;
+  color: #fff;
+  font-weight: bold;
+  align-self: flex-start;
+  border-radius: 1rem;
+}
+.order-complete .order-complete-group .your-order .row-order .col-content .price-and-quantity {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order-complete .order-complete-group .your-order .row-order .col-content .price-and-quantity .quantity {
+  color: #27ae60;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.order-complete .order-complete-group .your-order .row-order .col-content .price-and-quantity .price {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #27ae60;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+}
+.order-complete .order-complete-group .your-total {
+  width: calc(100% - 830px - 1rem);
+  padding: 2rem 2rem 2rem;
+  box-shadow: 0px 0px 10px rgba(105, 104, 104, 0.3764705882);
+  border-radius: 1rem;
+}
+.order-complete .order-complete-group .your-total .title-payment {
+  text-align: center;
+}
+.order-complete .order-complete-group .your-total .title-payment span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(to right, #64a2e5, #31d6b8);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.order-complete .order-complete-group .your-total .row-text {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order-complete .order-complete-group .your-total .row-text .desc {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #18b75a;
+}
+.order-complete .order-complete-group .your-total .row-text .money {
+  display: inline;
+  padding: 0.5rem 2rem;
+  font-size: 2rem;
+  color: #fff;
+  font-weight: bold;
+  background-color: rgb(236, 78, 78);
+  border-radius: 999px;
+  min-width: 110px;
+  text-align: center;
+}
+.order-complete .order-complete-group .your-total .thankyou-paid {
+  display: block;
+  margin: 2rem auto 0;
+  width: 150px;
+  height: 150px;
+}
+
+/*# sourceMappingURL=style_vendor_order_detail.css.map */

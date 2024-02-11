@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_blog_list_blog.css' %}"> {% endblock %}
+{% block content %}
+ <!-- Blog -->
+ <div class="blogs">
+    <!-- header -->
+    <header class="header-blog">
+        <a href="{% url 'home' %}" class="logo-web"> <i class="fas fa-utensils"></i> <span>Food</span></a>
+        <h1 class="title">Helping you become better everyday</h1>
+        <nav class="navbar-blog">
+            <ul>
+                <li>
+                    <a href="{% url 'list_blog' %}" style="text-transform: uppercase;">ALL</a>
+                </li>
+                {% for category in list_category_blog %}
+                <li>
+                    <a href="{% url 'list_blog_by_category' category.slug %}" style="text-transform: uppercase;">{{category.category_name}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+    <!-- blog -->
+    <div class="blog">
+        <div class="content">
+            <div class="group-item">
+                {% for post in posts %}
+                <div class="item">
+                    <a href="{% url 'post_detail' post.slug %}">
+                        <img
+                        src="{{post.image.url}}"
+                        alt=""
+                        class="blog-img"
+                    />
+                    </a>
+                    <div class="info">
+                        <p class="desc">
+                            {{post.post_title}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Blog -->
+{% endblock %}

@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+
+// variable
+$green: #27ae60;
+$black: #130f40;
+$white: #ffffff;
+$light-color: #666;
+$light-bg: #f7f7f7;
+$border: 0.1rem solid rgba(0, 0, 0, 0.2);
+$box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+$primary: #fa4c53;
+$text-color: #291667;
+
+// function
+@mixin font($size) {
+    font-family: "Satisfy", cursive;
+    font-size: $size;
+    color: $green;
+}
+
+@mixin set_size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin grid($val) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($val, 1fr));
+    gap: 1.5rem;
+}
+
+@mixin maxWidth($val) {
+    @media screen and (max-width: $val) {
+        @content;
+    }
+}
+
+@mixin flexbox(
+    $align: flex-start,
+    $justify: flex-start,
+    $flexdirection: row,
+    $flexwrap: nowrap
+) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $flexdirection;
+    flex-wrap: $flexwrap;
+}
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--line-clamp, 1);
+    overflow: hidden;
+}
+
+.header {
+    #cart-btn {
+        position: relative;
+    .notification {
+        position: absolute;
+        left: 0;
+        top: -20%;
+        min-width: 20px;
+        height: 20px;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #00c889;
+        border-radius: 50%;
+        font-size: 1.4rem;
+        color: #fff;
+    }
+}
+}
+
+.shopping-cart-container {
+    position: fixed;
+    top: 8.5rem;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: $white;
+    height: calc(100% - 8.5rem);
+    overflow-y: scroll;
+    padding-bottom: 8rem;
+    display: block;
+
+
+    &::-webkit-scrollbar {
+        width: 1rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $white;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $black;
+        border-radius: 5rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+        padding: 1rem;
+        color: $black;
+        border-bottom: $border;
+        text-align: center;
+        text-transform: capitalize;
+        font-weight: bold;
+    }
+
+    .products-container {
+        border: $border;
+        border-radius: 0.5rem;
+        animation: fadeUp 0.4s linear;
+
+        .box-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+
+            .box {
+                border-radius: 0.5rem;
+                background: $light-bg;
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 3rem 1rem;
+                position: relative;
+                border-radius: 1rem;
+
+                .fa-times {
+                    position: absolute;
+                    top: 0.7rem;
+                    right: 1rem;
+                    font-size: 2rem;
+                    cursor: pointer;
+                    color: $black;
+
+                    &:hover {
+                        color: $green;
+                    }
+                }
+
+                img {
+                    height: 80px;
+                    width: 80px;
+                    object-fit: cover;
+                    border-radius: 1rem;
+                }
+
+                .content {
+                    h3 {
+                        a {
+                        font-size: 2rem;
+                        color: $black;
+                        font-weight: bold;
+                        text-transform: capitalize;
+                        }
+                    }
+
+                    .row-content {
+                        margin-top: 1rem;
+                        display: flex;
+                        gap: 1rem;
+                        align-items: center;
+                    }
+
+                    .row-qty {
+                        display: flex;
+                        gap: 1rem;
+                        align-items: center;
+
+                        a {
+                            display: flex;
+                            width: 25px;
+                            height: 25px;
+                            color: #fff;
+                            font-size: 1.4rem;
+                            background-color: #27ae60;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 50%;
+                        }
+
+                        .quantity-food {
+                            font-weight: bold;
+                            color: #11a447;
+                        }
+                    }
+
+                    span {
+                        font-size: 1.6rem;
+                        color: $light-color;
+
+                        &.price {
+                            color: $green;
+                            font-size: 1.6rem;
+                            font-weight: 500;
+                        }
+                    }
+
+                    input {
+                        width: 8rem;
+                        padding: 0.5rem 1.2rem;
+                        font-size: 1.5rem;
+                        color: $black;
+                        margin: 0.7rem 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .cart-total {
+        margin-top: 2rem;
+        border: $border;
+        border-radius: 0.5rem;
+        animation: fadeUp 0.4s linear 0.4s backwards;
+
+        .box {
+            padding: 1.5rem;
+
+            h3 {
+                color: $black;
+                font-size: 2rem;
+                padding-bottom: 0.7rem;
+                text-transform: capitalize;
+                font-weight: bold;
+                margin-top: 1rem;
+
+                span {
+                    color: $green;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

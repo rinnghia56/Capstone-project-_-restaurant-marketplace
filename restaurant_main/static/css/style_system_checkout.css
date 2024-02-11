@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+.checkout-container {
+  padding: 1rem 2rem;
+}
+.checkout-container .title-checkout {
+  position: relative;
+  margin-top: 4rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #1ea3ef;
+  padding-bottom: 1rem;
+}
+.checkout-container .title-checkout::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: inline-block;
+  width: 60px;
+  height: 5px;
+  background-color: rgba(32, 218, 110, 0.7607843137);
+  border-radius: 999px;
+}
+.checkout-container .checkout-form {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+.checkout-container .checkout-form .checkout-billing {
+  width: calc(35% - 1rem);
+  border-left: 6px solid rgb(17, 171, 222);
+  border-right: 6px solid rgb(17, 171, 222);
+  padding-left: 1rem;
+  border-radius: 2rem;
+}
+.checkout-container .checkout-form .checkout-billing .row-input {
+  margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+.checkout-container .checkout-form .checkout-billing .row-input .col-input {
+  width: calc(50% - 1rem);
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.checkout-container .checkout-form .checkout-billing .row-input .col-input .lbl-title {
+  color: #a4a2a1;
+  font-weight: 500;
+  font-size: 1.8rem;
+}
+.checkout-container .checkout-form .checkout-billing .row-input .col-input input {
+  padding: 1rem;
+  font-family: "Open Sans", sans-serif;
+  border-bottom: 2px solid #38b3cf;
+}
+.checkout-container .checkout-form .checkout-billing .row-input .col-full {
+  width: 100%;
+}
+.checkout-container .checkout-form .checkout-billing .row-input .col-full .twitter-typeahead {
+  display: block;
+  width: 100%;
+}
+.checkout-container .checkout-form .checkout-billing .row-input .col-full .tt-input {
+  width: 100%;
+  text-transform: capitalize;
+  font-family: "Open Sans", sans-serif;
+}
+.checkout-container .checkout-form .checkout-billing .row-input .col-full .tt-menu {
+  margin-top: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.89);
+  backdrop-filter: blur(30px);
+  border-radius: 1rem;
+}
+.checkout-container .checkout-form .checkout-billing .row-input .col-full .tt-menu .tt-suggestion {
+  padding-left: 1rem;
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  font-family: "Open Sans", sans-serif;
+}
+.checkout-container .checkout-form .checkout-billing .row-input .col-full .tt-menu .tt-suggestion:hover {
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+.checkout-container .checkout-form .your-order {
+  width: calc(35% - 1rem);
+  height: 472px;
+  overflow: auto;
+}
+.checkout-container .checkout-form .your-order::-webkit-scrollbar {
+  width: 5px;
+}
+.checkout-container .checkout-form .your-order::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to bottom, #62c9e3, #37e09d);
+  border-radius: 999px;
+}
+.checkout-container .checkout-form .your-order .row-order {
+  display: flex;
+  height: 150px;
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #f7f7f7;
+}
+.checkout-container .checkout-form .your-order .row-order:not(:first-child) {
+  margin-top: 1rem;
+}
+.checkout-container .checkout-form .your-order .row-order .col-img {
+  width: 40%;
+}
+.checkout-container .checkout-form .your-order .row-order .col-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.checkout-container .checkout-form .your-order .row-order .col-content {
+  padding: 1.5rem 2rem;
+  width: 60%;
+}
+.checkout-container .checkout-form .your-order .row-order .col-content .name-food {
+  font-size: 2rem;
+  color: #130f40;
+  font-weight: bold;
+}
+.checkout-container .checkout-form .your-order .row-order .col-content .name-restaurant {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  background-color: #27ae60;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 1rem;
+}
+.checkout-container .checkout-form .your-order .row-order .col-content .price-and-quantity {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkout-container .checkout-form .your-order .row-order .col-content .price-and-quantity .quantity {
+  color: #27ae60;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.checkout-container .checkout-form .your-order .row-order .col-content .price-and-quantity .price {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #27ae60;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+}
+.checkout-container .checkout-form .payment {
+  background-color: #fff;
+  width: calc(30% - 1rem);
+  padding: 2rem 2rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  backdrop-filter: blur(30px);
+}
+.checkout-container .checkout-form .payment .row-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkout-container .checkout-form .payment .row-text:not(:first-child) {
+  margin-top: 3rem;
+}
+.checkout-container .checkout-form .payment .row-text .desc {
+  font-weight: 600;
+  font-size: 2rem;
+}
+.checkout-container .checkout-form .payment .row-text .money {
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(254, 56, 52);
+}
+.checkout-container .checkout-form .payment .select-method {
+  margin-top: 3rem;
+  font-weight: 600;
+  font-size: 2rem;
+}
+.checkout-container .checkout-form .payment .select-method .title-select {
+  text-transform: lowercase;
+}
+.checkout-container .checkout-form .payment .select-method .title-select::first-letter {
+  text-transform: uppercase;
+}
+.checkout-container .checkout-form .payment .select-method .group-method {
+  margin-top: 1rem;
+  display: flex;
+}
+.checkout-container .checkout-form .payment .select-method .group-method img {
+  width: 130px;
+  height: 45px;
+  object-fit: cover;
+}
+.checkout-container .checkout-form .payment .select-method .group-method .method-detail .payment-method {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.checkout-container .checkout-form .payment .select-method .group-method .method-detail .payment-method + img {
+  cursor: pointer;
+  padding: 5px;
+}
+.checkout-container .checkout-form .payment .select-method .group-method .method-detail .payment-method:checked + img {
+  border-radius: 1rem;
+  outline: 2px solid #3e94df;
+}
+.checkout-container .checkout-form .payment .select-method .btn-place-order {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  display: block;
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  background-color: rgba(243, 44, 64, 0.9176470588);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0px 10px 20px rgba(241, 33, 53, 0.584);
+  transition: all linear 0.4s;
+}
+.checkout-container .checkout-form .payment .select-method .btn-place-order:hover {
+  box-shadow: 0px 0px 0 rgba(241, 33, 53, 0.584);
+}
+.checkout-container .checkout-form .payment .select-method .alert-select {
+  margin-top: 1rem;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: rgb(247, 88, 88);
+}
+
+/*# sourceMappingURL=style_system_checkout.css.map */

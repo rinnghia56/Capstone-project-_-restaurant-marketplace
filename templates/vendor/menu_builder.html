@@ -1,0 +1,110 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_menu.css' %}"> {% endblock %}
+{% block breadcrumb %}Menu builder{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="box-menu">
+    <div class="box-menu__left">
+        <div class="box-menu__heading">
+            <h2 class="box-menu__title">Menu Categories</h2>
+        </div>
+        <div class="row-menu row-menu-heading">
+            <div class="col-menu col-menu-heading">
+                Index
+            </div>
+            <div class="col-menu col-menu-heading">
+                Name menu
+            </div>
+            <div class="col-menu col-menu-heading">
+                Edit
+            </div>
+            <div class="col-menu col-menu-heading">
+                Delete
+            </div>
+        </div>
+        {% for category in categories %}
+        <div class="row-menu">
+            <div class="col-menu">
+                {{ forloop.counter }}
+            </div>
+            <div class="col-menu">
+                <a href="{% url 'fooditems_by_category' category.id %}" class="name-menu">{{category.category_name}}</a>
+            </div>
+            <div class="col-menu">
+                <a href="{% url 'edit_category' category.id %}" class="menu-btn btn-edit"><i class="fas fa-edit"></i></a>
+            </div>
+            <div class="col-menu">
+                <a href="{% url 'delete_category' category.id %}" class="menu-btn btn-delete"><i class="fas fa-trash"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="box-menu__right">
+        <div class="box-menu__heading">
+            <h2 class="box-menu__title">Add</h2>
+        </div>
+
+       <div class="box-add">
+            <a class="btn-add" href="{% url 'add_food' %}#title-add-food">
+                Add Food
+            </a>
+            <a class="btn-add" href="{% url 'add_category' %}#title-add-category">
+                Add Category
+            </a>
+       </div>
+    </div>
+</div>
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>😜</h3>
+            <div class="group-icon-filter">
+                <i class="fas fa-search bx"></i>
+                <i class="fas fa-filter bx"></i>
+            </div>
+        </div>
+
+        <div class="table-order">
+            <div class="row-heading row-order">
+                <p class="col-order">Index</p>
+                <p class="col-order">Name</p>
+                <p class="col-order">Price</p>
+                <p class="col-order">Date Created</p>
+                <p class="col-order">Status</p>
+                <p class="col-order">Action</p>
+            </div>
+
+            {% for food in foods %}
+            <div class="row-order">
+                <p class="col-order">{{ forloop.counter }}</p>
+                <p class="col-order"><a href="{% url 'food_detail' food.slug %}" class="name-food">{{ food }}</a></p>
+                <p class="col-order">{{ food.price }}$</p>
+                <p class="col-order">{{food.created_at}}</p>
+                <p class="col-order">
+                    <span class="status completed">
+                        {% if food.is_available %}
+                                Available
+                        {% else %}
+                                Not Available
+                        {% endif %}
+                    </span>
+                </p>
+                <p class="col-order">
+                    <a href="{% url 'edit_food' food.id %}" class="btn-detail"
+                        ><i class="fas fa-edit"></i></a
+                    >
+                    <a href="{% url 'delete_food' food.id %}" class="btn-detail"
+                        ><i class="fas fa-trash"></i></a
+                    >
+                    <a href="{% url 'view_image' food.id %}" class="btn-detail"
+                        ><i class="fas fa-images"></i></a
+                    >
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% include 'includes/alerts.html'%}
+{% endblock %}

@@ -1,0 +1,293 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+// variable
+$green: #27ae60;
+$black: #130f40;
+$white: #ffffff;
+$light-color: #666;
+$light-bg: #f7f7f7;
+$border: 0.1rem solid rgba(0, 0, 0, 0.2);
+$box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+$primary: #fa4c53;
+$text-color: #291667;
+
+// function
+@mixin font($size) {
+    font-family: "Satisfy", cursive;
+    font-size: $size;
+    color: $green;
+}
+
+@mixin set_size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin grid($val) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($val, 1fr));
+    gap: 1.5rem;
+}
+
+@mixin maxWidth($val) {
+    @media screen and (max-width: $val) {
+        @content;
+    }
+}
+
+@mixin flexbox(
+    $align: flex-start,
+    $justify: flex-start,
+    $flexdirection: row,
+    $flexwrap: nowrap
+) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $flexdirection;
+    flex-wrap: $flexwrap;
+}
+
+.checkout-container {
+    padding: 1rem 2rem;
+
+    .title-checkout {
+        position: relative;
+        margin-top: 4rem;
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: #1ea3ef;
+        padding-bottom: 1rem;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: inline-block;
+            width: 60px;
+            height: 5px;
+            background-color: #20da6ec2;
+            border-radius: 999px;
+        }
+    }
+
+    .checkout-form {
+        display: flex;
+        align-items: flex-start;
+        gap: 3rem;
+        margin-top: 3rem;
+        .checkout-billing {
+            width: calc(35% - 1rem);
+            border-left: 6px solid rgb(17, 171, 222);
+            border-right: 6px solid rgb(17, 171, 222);
+            padding-left: 1rem;
+            border-radius: 2rem;
+
+            .row-input {
+                margin-top: 2rem;
+                display: flex;
+                gap: 2rem;
+                .col-input {
+                    width: calc(50% - 1rem);
+                    gap: 1rem;
+                    display: flex;
+                    flex-direction: column;
+
+                    .lbl-title {
+                        color: #a4a2a1;
+                        font-weight: 500;
+                        font-size: 1.8rem;
+                    }
+
+                    input {
+                        padding: 1rem;
+                        font-family: "Open Sans", sans-serif;
+                        border-bottom: 2px solid #38b3cf;
+                    }
+                }
+
+                .col-full {
+                    width: 100%;
+                }
+            }
+        }
+
+        .your-order {
+            width: calc(35% - 1rem);
+            height: 472px;
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-image: linear-gradient(to bottom, #62c9e3, #37e09d);
+                border-radius: 999px;
+            }
+
+            .row-order {
+                display: flex;
+                height: 150px;
+                width: 100%;
+                border-radius: 1rem;
+                overflow: hidden;
+                background-color: #f7f7f7;
+
+                &:not(:first-child) {
+                    margin-top: 1rem;
+                }
+
+                .col-img {
+                    width: 40%;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .col-content {
+                    padding: 1.5rem 2rem;
+                    width: 60%;
+                    .name-food {
+                        font-size: 2rem;
+                        color: #130f40;
+                        font-weight: bold;
+                    }
+
+                    .name-restaurant {
+                        display: inline-block;
+                        margin-top: 2rem;
+                        padding: 0.5rem 1rem;
+                        background-color: #27ae60;
+                        color: #fff;
+                        font-weight: bold;
+                        border-radius: 1rem;
+                    }
+
+                    .price-and-quantity {
+                        margin-top: 2rem;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .quantity {
+                            color: #27ae60;
+                            font-size: 1.6rem;
+                            font-weight: bold;
+                        }
+
+                        .price {
+                            color: #fff;
+                            font-size: 2rem;
+                            font-weight: bold;
+                            background-color: #27ae60;
+                            padding: 0.5rem 1rem;
+                            border-radius: 999px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .payment {
+            background-color: #fff;
+            width: calc(30% - 1rem);
+            padding: 2rem 2rem;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 1rem;
+            backdrop-filter: blur(30px);
+            .row-text {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &:not(:first-child) {
+                    margin-top: 3rem;
+                }
+
+                .desc {
+                    font-weight: 600;
+                    font-size: 2rem;
+                }
+
+                .money {
+                    font-size: 2rem;
+                    font-weight: bold;
+                    color: rgb(254, 56, 52);
+                }
+            }
+
+            .select-method {
+                margin-top: 3rem;
+                font-weight: 600;
+                font-size: 2rem;
+
+                .title-select {
+                    text-transform: lowercase;
+                    &::first-letter {
+                        text-transform: uppercase;
+                    }
+                }
+                .group-method {
+                    margin-top: 1rem;
+                    display: flex;
+
+                    img {
+                        width: 130px;
+                        height: 45px;
+                        object-fit: cover;
+                    }
+
+                    .method-detail {
+                        .payment-method {
+                            position: absolute;
+                            opacity: 0;
+                            width: 0;
+                            height: 0;
+                        }
+                        .payment-method + img {
+                            cursor: pointer;
+                            padding: 5px;
+                        }
+
+                        .payment-method:checked + img {
+                            border-radius: 1rem;
+                            outline: 2px solid #3e94df;
+                        }
+                    }
+                }
+
+                .btn-place-order {
+                    margin-top: 1.5rem;
+                    padding: 1rem;
+                    display: block;
+                    width: 100%;
+                    font-size: 1.6rem;
+                    font-weight: bold;
+                    border-radius: 1rem;
+                    background-color: #f32c40ea;
+                    color: #fff;
+                    cursor: pointer;
+                    box-shadow: 0px 10px 20px rgba(241, 33, 53, 0.584);
+                    transition: all linear 0.4s;
+
+                    &:hover {
+                        box-shadow: 0px 0px 0 rgba(241, 33, 53, 0.584);
+                    }
+                }
+
+                .alert-select {
+                    margin-top: 1rem;
+                    font-size: 1.8rem;
+                    font-weight: 400;
+                    color: rgb(247, 88, 88);
+                }
+            }
+        }
+    }
+}

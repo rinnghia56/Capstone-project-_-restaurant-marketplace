@@ -1,0 +1,56 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_menu.css' %}"> {% endblock %}
+{% block breadcrumb %}Manage Post{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="box-menu">
+    <div class="box-menu__left">
+        <div class="box-menu__heading">
+            <h2 class="box-menu__title">List Post</h2>
+        </div>
+        <div class="row-menu row-menu-heading">
+            <div class="col-menu col-menu-heading">
+                Index
+            </div>
+            <div class="col-menu col-menu-heading">
+                Name post
+            </div>
+            <div class="col-menu col-menu-heading">
+                Edit
+            </div>
+            <div class="col-menu col-menu-heading">
+                Delete
+            </div>
+        </div>
+        {% for post in posts %}
+        <div class="row-menu">
+            <div class="col-menu">
+                {{ forloop.counter }}
+            </div>
+            <div class="col-menu">
+                <a href="#!" class="name-menu" style="line-height: 1.5;">{{post.post_title}}</a>
+            </div>
+            <div class="col-menu">
+                <a href="{% url 'edit_post' post.id %}" class="menu-btn btn-edit"><i class="fas fa-edit"></i></a>
+            </div>
+            <div class="col-menu">
+                <a href="{% url 'delete_post' post.id %}" class="menu-btn btn-delete"><i class="fas fa-trash"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="box-menu__right">
+        <div class="box-menu__heading">
+            <h2 class="box-menu__title">Add</h2>
+        </div>
+
+       <div class="box-add">
+            <a class="btn-add" href="{% url 'add_post' %}">
+                Add Post
+            </a>
+       </div>
+    </div>
+</div>
+{% include 'includes/alerts.html'%}
+{% endblock %}

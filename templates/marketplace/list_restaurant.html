@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_system_listrestaurant.css' %}"> {% endblock %}
+{% block content %}
+
+<div class="banner-food">
+    <div class="row-banner">
+        <div class="banner-big">
+            <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30"
+            centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
+            <swiper-slide><img src="{% static 'img/banner-food-01.jpg' %}" alt=""></swiper-slide>
+            <swiper-slide><img src="{% static 'img/banner-food-02.jpg' %}" alt=""></swiper-slide>
+            <swiper-slide><img src="{% static 'img/banner-food-03.jpg' %}" alt=""></swiper-slide>
+          </swiper-container>
+        </div>
+        <div class="group-banner-small">
+            <div class="banner-small">
+                <img src="{% static 'img/banner-food-04.jpg' %}" alt="">
+            </div>
+            <div class="banner-small">
+                <img src="{% static 'img/banner-food-05.jpg' %}" alt="">
+            </div>
+            <div class="banner-small">
+                <img src="{% static 'img/banner-food-06.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="container-banner">
+            <swiper-container class="mySwiper" pagination="true" effect="coverflow" grab-cursor="true" centered-slides="true"
+            slides-per-view="auto" coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+            coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true" autoplay="false" initial-slide="3">
+                {% for vendor in vendors %}
+                <swiper-slide>
+                    {% if vendor.user_profile.profile_picture %}
+                    <a href="{% url 'vendor_detail' vendor.vendor_slug %}">
+                    <img src="{{ vendor.user_profile.profile_picture.url }}">
+                    </a>
+                    {% else %}
+                    <a href="{% url 'vendor_detail' vendor.vendor_slug %}">
+                    <img src="{% static 'img/img_vendor/restaurant_default.jpg' %}">
+                    </a>
+                    {% endif %}
+                </swiper-slide>
+                {% endfor %}
+            </swiper-container>
+        </div>
+        <!-- Restaurant -->
+        <div class="restaurant">
+            <h1 class="title-heading">Restaurant ({{ vendor_count }} Restaurant's found)</h1>
+            <div class="group-author">
+                {% for vendor in vendors %}
+                    <div class="author">
+                        {% if vendor.is_open %}
+                            <div class="status">Open</div>
+                        {% else %}
+                            <div class="status close">Close</div>
+                        {% endif %}
+                        
+                        <div class="author__left">
+                            {% if vendor.user_profile.profile_picture %}
+                            <img src="{{ vendor.user_profile.profile_picture.url }}" class="author__img" alt="">
+                            {% else %}
+                            <img src="{% static 'img/img_vendor/restaurant_default.jpg' %}" class="author__img" alt="">
+                            {% endif %}
+                        </div>
+                        <div class="author__right">
+                            <h3 class="author__name">{{ vendor.vendor_name }}</h3>
+                            <p class="author__desc">
+                                <strong>Address:</strong>  {{ vendor.user_profile.address }}
+                            </p>
+                            {% if source_location %}
+                            <p class="author__distance"><strong>{{vendor.kms}} KM</strong> away from {{source_location}}</p>
+                            {% endif %}
+                            <div class="author__action">
+                                <a class="btn-view" href="{% url 'vendor_detail' vendor.vendor_slug %}"><i class="fas fa-eye"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <!-- End Restaurant -->
+{% endblock %}
+
+{% block footer %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+{% include 'includes/footer.html' %}
+{% endblock %}

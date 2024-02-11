@@ -1,0 +1,65 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_sentiment.css' %}"> {% endblock %}
+{% block breadcrumb %}Sentiment{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="sentiment">
+    <div class="sentiment-left">
+        <div class="item-feeling">
+            <div class="item-feeling-icon">
+                <i class="fas fa-grin-beam"></i>
+            </div>
+            <h3 class="title">positive</h3>
+            <a href="{% url 'view_all_comment_by_sentiment' %}?type_sentiment=Positive" class="btn-sentiment">{{positive}} comments</a>
+        </div>
+        <div class="item-feeling">
+            <div class="item-feeling-icon">
+                <i class="fas fa-smile"></i>
+            </div>
+            <h3 class="title">neutral</h3>
+            <a href="{% url 'view_all_comment_by_sentiment' %}?type_sentiment=Neutral" class="btn-sentiment">{{neutral}} comments</a>
+        </div>
+        <div class="item-feeling">
+            <div class="item-feeling-icon">
+                <i class="fas fa-angry"></i>
+            </div>
+            <h3 class="title">negative</h3>
+            <a href="{% url 'view_all_comment_by_sentiment' %}?type_sentiment=Negative" class="btn-sentiment">{{negative}} comments</a>
+        </div>
+    </div>
+
+    <div class="sentiment-right">
+        <p class="desc"><span>Positive:</span> the expression of customer satisfaction</p>
+        <p class="desc"><span>Neutral:</span> the manifestation of customer perceiving the product at an acceptable level.</p>
+        <p class="desc"><span>Negative:</span> the customer feels uncomfortable, as the product is of poor quality and fails to satisfy the customer.</p>
+    </div>
+</div>
+
+<div class="list-food">
+    {% for food in fooditems %}
+        <div class="food-item">
+            <div class="food-image">
+                <img src="{{food.image.url}}" alt="">
+            </div>
+            <div class="food-content">
+                <h2 class="food-name">{{food.food_title}}</h2>
+                <div class="stars">
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <i class="fas fa-star star"></i>
+                    <p class="review-number"></p>
+                </div>
+            <p class="food-desc">{{food.description}}</p>
+            <p class="price">Price ${{food.price}}</p>
+            <div class="actions">
+                    <a href="{% url 'vendor_view_comment_by_sentiment' food_id=food.id  %}?type_sentiment=Positive" class="action"><i class="fas fa-heart"></i></a>
+                    <a href="{% url 'vendor_view_comment_by_sentiment' food_id=food.id  %}?type_sentiment=Neutral" class="action">Neutral</a>
+                    <a href="{% url 'vendor_view_comment_by_sentiment' food_id=food.id  %}?type_sentiment=Negative" class="action">Negative</a>
+            </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% include 'includes/alerts.html'%}
+{% endblock %}

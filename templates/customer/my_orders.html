@@ -1,0 +1,98 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/style_customer_dashboard.css' %}">
+{% endblock %}
+{% block content %}
+<div class="customer_dashboard">
+    <!-- sidebar -->
+    {% include 'includes/c_sidebar.html' %}
+
+    <div id="content-customer">
+        <!-- cover -->
+        {% include 'customer/cover.html' %}
+ 
+
+        <h2 class="title-info">My Orders</h2>
+
+        <!-- Order -->
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3>Recent Orders</h3>
+                    <div class="group-icon-filter">
+                        <i class="fas fa-search bx"></i>
+                        <i class="fas fa-filter bx"></i>
+                    </div>
+                </div>
+
+                <div class="table-order">
+                    <div class="row-heading row-order">
+                        <p class="col-order">Order</p>
+                        <p class="col-order">Name</p>
+                        <p class="col-order">Total</p>
+                        <p class="col-order">Date Order</p>
+                        <p class="col-order">Status</p>
+                        <p class="col-order">Action</p>
+                    </div>
+
+                    {% for order in page_obj  %}
+                    <div class="row-order">
+                        <p class="col-order">{{order.order_number}}</p>
+                        <p class="col-order">{{order.name}}</p>
+                        <p class="col-order">{{order.total}}$</p>
+                        <p class="col-order">{{order.created_at}}</p>
+                        <p class="col-order">
+                            <span class="status completed"
+                                >Paid</span
+                            >
+                        </p>
+                        <p class="col-order">
+                            <a href="{% url 'order_detail' order.order_number %}" class="btn-detail"
+                                >Detail</a
+                            >
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="pagination">
+                    <ul class="context">
+                        {% if page_obj.has_previous %}
+                        <li>
+                            <a href="?page=1">First</a>
+                        </li>
+                        <li>
+                            <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="#!">{{ page_obj.number }}</a>
+                        </li>
+                        {% if page_obj.has_next %}
+                        <li>
+                            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                        </li>
+                        <li>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% include 'includes/alerts.html'%}
+<script>
+const menuBar = document.querySelector('.show-bar');
+const sidebar = document.getElementById('sidebar-customer');
+
+menuBar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
+})
+</script>
+<script src="{% static 'js/script_login.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_comment_by_sentiment.css' %}"> {% endblock %}
+{% block breadcrumb %}Sentiment{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="main-view-comment">
+    <div class="view-comment-left">
+        <div class="food-img">
+            <img src="{{food.image.url}}" alt="">
+        </div>
+
+        <div class="food-content">
+            <h2 class="food-name">{{food.food_title}}</h2>
+            <div class="stars">
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <p class="review-number">(2000+ viewer)</p>
+            </div>
+            <p class="price">Price: ${{food.price}}</p>
+            <p class="food-desc"><span>Description:</span> {{food.description}}</p>
+        </div>
+       
+    </div>
+    <div class="view-comment-right">
+        <h2 class="title">{{param_value}} Comment</h2>
+
+        <div class="list-comment">
+            {% for comment in comments %}
+                <div class="comment-item">
+                    <div class="user-img">
+                        {% if comment.user.userprofile.profile_picture %}
+                            <img src="{{comment.user.userprofile.profile_picture.url}}" alt="">
+                        {% else %}
+                            <img src="{% static 'img/img_vendor/restaurant_default.jpg' %}" alt="">
+                        {% endif %}
+                    </div>
+
+                    <div class="comment-content">
+                        <div class="comment-title">
+                            <span class="user-name">{{comment.user.first_name}} {{comment.user.last_name}}</span> 
+                            <p class="comment-time"><i class="far fa-clock"></i> {{comment.created_at}}</p>
+                        </div>
+                        <p class="comment-desc">{{comment.text}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+<!-- SIDEBAR -->
+<section id="sidebar">
+    <a href="{% url 'home' %}" class="brand">
+        <i class="fas fa-utensils bx"></i>
+        <span class="text">Food</span>
+    </a>
+    <ul class="side-menu top">
+        <li class="{% if '/accounts/vendashboard/' == request.path or '/accounts/vendor/' == request.path %}active{% endif %}">
+            <a href="{% url 'venDashboard' %}">
+                <i class="fas fa-columns bx"></i>
+                <span class="text">Dashboard</span>
+            </a>
+        </li>
+        <li class="{% if 'profile' in request.path %}active{% endif%}">
+            <a href="{% url 'vprofile'%}">
+                <i class="fas fa-store bx"></i>
+                <span class="text">My Restaurant</span>
+            </a>
+        </li>
+        <li class="{% if 'menu-builder' in request.path %}active{% endif %}">
+            <a href="{% url 'menu_builder'%}">
+                <i class="far fa-calendar-minus bx"></i>
+                <span class="text">Menu builder</span>
+            </a>
+        </li>
+        <li class="{% if 'opening-hours' in request.path %}active{% endif %}">
+            <a href="{% url 'opening_hours'%}">
+                <i class="fas fa-hourglass-start bx"></i>
+                <span class="text">Opening Hours</span>
+            </a>
+        </li>
+        <li class="{% if '/my_orders/' in request.path %}active{% endif %}">
+            <a href="{% url 'vendor_my_orders' %}">
+                <i class="fab fa-jedi-order bx"></i>
+                <span class="text">Orders</span>
+            </a>
+        </li>
+        <li class="{% if '/sentiment_comment/' in request.path %}active{% endif %}">
+            <a href="{% url 'vendor_sentiment_comment' %}">
+                <i class="fab fa-jedi-order bx"></i>
+                <span class="text">Sentiment</span>
+            </a>
+        </li>
+        <li class="{% if 'manage_post' in request.path %}active{% endif %}">
+            <a href="{% url 'manage_post' %}">
+                <i class="far fa-calendar-minus bx"></i>
+                <span class="text">Post</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a href="{% url 'logout' %}" class="logout bx">
+                <i class="fas fa-sign-out-alt bx"></i>
+                <span class="text">Signout</span>
+            </a>
+        </li>
+    </ul>
+</section>
+<!-- SIDEBAR -->

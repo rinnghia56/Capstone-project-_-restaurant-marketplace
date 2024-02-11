@@ -1,0 +1,18 @@
+{% load static %}
+
+<!-- Info img -->
+<div class="cover-img">
+    {% if profile.cover_photo %}
+    <img src="{{profile.cover_photo.url}}" alt="Cover Photo">
+    {% else %}
+    <img src="{% static 'img/img_vendor/background_default.jpg' %}" alt="Cover Photo">
+    {% endif %}
+    <div class="info-left">
+        {% if profile.profile_picture %}
+        <img class="profile-img" src="{{profile.profile_picture.url}}" alt="Profile Picture">
+        {% else %}
+        <img class="profile-img" src="{% static 'img/img_vendor/restaurant_default.jpg' %}" alt="Profile Picture">
+        {% endif %}
+        <h3 class="user-name">{{user.first_name}} {{user.last_name}}</h3>
+    </div>
+</div>

@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&family=Open+Sans:wght@400;500;600;700;800&display=swap');
+// variable
+$light: #f9f9f9;
+$blue: #3c91e6;
+$light-blue: #cfe8ff;
+$grey: #eee;
+$dark-grey: #aaaaaa;
+$dark: #342e37;
+$red: #db504a;
+$yellow: #ffce26;
+$light-yellow: #fff2c6;
+$orange: #fd7238;
+$light-orange: #ffe0d3;
+// function
+@mixin font($size, $color) {
+    font-family: "Lato";
+    font-size: $size;
+    color: $color;
+}
+
+@mixin set_size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin grid($val) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+    gap: 1.5rem;
+}
+
+@mixin maxWidth($val) {
+    @media screen and (max-width: $val) {
+        @content;
+    }
+}
+
+@mixin flexbox(
+    $align: flex-start,
+    $justify: flex-start,
+    $flexdirection: row,
+    $flexwrap: nowrap
+) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $flexdirection;
+    flex-wrap: $flexwrap;
+}
+
+// Code
+
+.box-menu {
+    margin-top: 4rem;
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+
+    &__left, &__right {
+        background-color: #faf6f6b9;
+        border-radius: 1rem;
+        padding:2rem;
+        box-shadow:0px 0px 10px rgba(42, 42, 42, 0.186);
+    }
+
+    &__left {
+        width: calc(60% - 2rem);
+        min-height: 50rem;
+    }
+
+    &__right {
+        width: calc(40% - 2rem);
+    }
+
+    &__title {
+        font-size: 2.4rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+    }
+
+    .row-menu {
+        display: flex;
+        align-items: center;
+        gap:1rem;
+        padding: 2rem 0;
+        border-radius: 1rem;
+        margin-top: 0.5rem;
+        transition: all 0.3s linear;
+
+        .col-menu {
+            width: calc((100% / 4) - (3rem/4));
+            display: flex;
+            justify-content:center;
+
+            .name-menu {
+                color: #000;
+            }
+        }
+
+        .col-menu-heading {
+            font-weight: 500;
+            font-size:1.6rem;
+            text-transform: capitalize;
+        }
+
+        &:nth-child(even):not(:nth-child(2)){
+            border-left:0.7rem solid #3c91e6;
+        }
+
+        &:nth-child(odd){
+            border-left:0.7rem solid #f3597a;
+        }
+
+        .btn-edit {
+            color: rgb(79, 191, 236);
+        }
+
+
+        .btn-delete {
+            color: red;
+        }
+
+        &:hover {
+            background-color:rgba(231, 236, 237, 0.562);
+        }
+    }
+
+    .row-menu-heading {
+        border-bottom:1px solid #ccc;
+    }
+
+    .box-add {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .btn-add {
+            display:block;
+            background-color: lightblue;
+            padding:1.5rem;
+            color:white;
+            text-align: center;
+            border-radius:1rem;
+            font-weight: 600;
+            transition: all 0.3s linear;
+
+            &:hover {
+                opacity:0.8;
+            }
+        }
+
+        .btn-add:first-child {
+            background:linear-gradient(to right, #888be2 , #59d3f5);
+        }
+
+        .btn-add:last-child {
+            background:linear-gradient(to right, #D8B5FF , #88eedf);
+        }
+    }
+}
+
+.table-data {
+    margin-top: 2rem;
+    background-color: #fff;
+    border-radius: 2rem;
+    padding: 2rem;
+    box-shadow:0px 0px 10px rgba(51, 51, 51, 0.325);
+
+    .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            font-size: 2.4rem;
+            font-weight: 600;
+        }
+
+        .group-icon-filter {
+            display: flex;
+            gap: 1rem;
+        }
+    }
+
+    .table-order {
+        margin-top: 2rem;
+        height: 500px;
+        overflow: auto;
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #FAACA8;
+            background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);
+            border-radius: 8px;
+        }
+
+        .row-order {
+            display: flex;
+            align-items: center;
+
+            .col-order {
+                width: calc(100% / 6);
+                text-align: center;
+                padding: 25px 0;
+
+                .name-food {
+                    font-family: 'Montserrat', sans-serif;
+                    color: #000;
+                    line-height: 1.5;
+                }
+
+                .status {
+                    background: #3c91e6;
+                    font-size: 1.4rem;
+                    padding: 6px 16px;
+                    border-radius: 20px;
+                    font-weight: 700;
+                    color: #fff;
+                }
+
+                .btn-detail {
+                    display: inline-block;
+                    min-width: 5rem;
+                    font-size: 1.4rem;
+                    color: #fff;
+                    background-color: rgb(244, 76, 64);
+                    padding: 0.6rem;
+                    border-radius: 0.5rem;
+                    font-weight: bold;
+                }
+            }
+
+            &:hover {
+                background: #eee;
+            }
+        }
+
+        .row-heading {
+            .col-order {
+                font-size: 1.6rem;
+                font-weight: bold;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+        }
+    }
+}

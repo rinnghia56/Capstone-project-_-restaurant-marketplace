@@ -1,0 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
+#content main .box-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-gap: 24px;
+  margin-top: 36px;
+}
+
+#content main .box-info li {
+  padding: 24px;
+  background: #f9f9f9;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  grid-gap: 24px;
+}
+#content main .box-info li span {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#content main .box-info li .bx {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#content main .box-info li:nth-child(1) .bx {
+  background: #cfe8ff;
+  color: #3c91e6;
+}
+
+#content main .box-info li:nth-child(2) .bx {
+  background: #fff2c6;
+  color: #ffce26;
+}
+
+#content main .box-info li:nth-child(3) .bx {
+  background: #ffe0d3;
+  color: #fd7238;
+}
+
+#content main .box-info li .text h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #342e37;
+}
+
+#content main .box-info li .text p {
+  color: #342e37;
+}
+
+#content main .table-data {
+  margin-top: 24px;
+  width: 100%;
+  color: var #342e37;
+}
+
+#content main .table-data > div {
+  border-radius: 20px;
+  background: #f9f9f9;
+  padding: 24px;
+  overflow-x: auto;
+}
+
+#content main .table-data .head {
+  display: flex;
+  align-items: center;
+  grid-gap: 16px;
+  margin-bottom: 3.2rem;
+}
+
+#content main .table-data .head h3 {
+  margin-right: auto;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+#content main .table-data .head .bx {
+  cursor: pointer;
+}
+
+#content main .table-data .order table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#content main .table-data .order table th {
+  padding-bottom: 12px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+#content main .table-data .order table td {
+  padding: 1.6rem 0;
+  text-align: center;
+}
+#content main .table-data .order table td .btn-detail {
+  display: inline-block;
+  min-width: 10rem;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: rgb(244, 76, 64);
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+#content main .table-data .order table tr {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+#content main .table-data .order table tr td {
+  width: calc(16.6666666667% - 1.6666666667rem);
+}
+
+#content main .table-data .order table tr th {
+  width: calc(16.6666666667% - 1.6666666667rem);
+}
+
+#content main .table-data .order table tr td:nth-child(2) {
+  display: flex;
+  align-items: center;
+  grid-gap: 12px;
+  padding-left: 6px;
+  justify-content: center;
+}
+
+#content main .table-data .order table td img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#content main .table-data .order table tbody tr:hover {
+  background: #eee;
+}
+
+#content main .table-data .order table tr td .status {
+  font-size: 10px;
+  padding: 6px 16px;
+  color: #f9f9f9;
+  border-radius: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+#content main .table-data .order table tr td .status.completed {
+  background: #3c91e6;
+}
+
+#content main .table-data .order table tr td .status.process {
+  background: #ffce26;
+}
+
+#content main .table-data .order table tr td .status.pending {
+  background: #fd7238;
+}
+
+#content .pagination {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+#content .pagination .context {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+#content .pagination .context li {
+  padding: 1rem 0.5rem;
+  text-align: center;
+  min-width: 4rem;
+  border: 1px solid #c2dce7;
+  border-radius: 0.5rem;
+  transition: all 0.3s linear;
+}
+#content .pagination .context li:hover {
+  background-color: #6faeed;
+}
+#content .pagination .context li a {
+  color: #000;
+  cursor: pointer;
+  display: block;
+}
+
+/*# sourceMappingURL=style_vendor_dashboard.css.map */

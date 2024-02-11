@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Admin{% endblock %}</title>
+    <!-- reset css -->
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://www.iconarchive.com/download/i99695/sonya/swarm/Fast-Food.ico" type="image/x-icon">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style_vendor.css' %}" />
+    
+    <!-- js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+    {% block style %} {% endblock %}
+</head>
+
+<body>
+    {% include 'includes/v_sidebar.html' %}
+
+    <section id="content">
+        <!-- NAVBAR -->
+        {% include 'includes/header_vendor.html' %}
+        <!-- END NAVBAR -->
+
+        <!-- RESTAURANT BANNER -->
+        {% include 'includes/cover.html' %}
+        <!-- END RESTAURANT BANNER -->
+
+        <!-- CONTENT -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <i class="fas fa-chevron-right bx"></i>
+                        <li>
+                            <a class="active" href="#!">{% block breadcrumb %}Dashboard{% endblock %}</a>
+                        </li>
+                    </ul>
+                </div>
+                {% block down_load_pdf %}
+                <a href="#" class="btn-download">
+                    <i class="bx bxs-cloud-download"></i>
+                    <span class="text">Download PDF</span>
+                </a>
+                {% endblock %}
+            </div>
+
+            {% block content %}
+
+            {% endblock %}
+        </main>
+        <!-- END CONTENT -->
+    </section>
+
+
+    <script src="{% static 'js/script_vendor.js'%}"></script>
+    {% block js %} {% endblock %}
+
+</body>
+
+</html>

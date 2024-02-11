@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
+.box-add {
+  margin-top: 4rem;
+}
+.box-add .btn-back {
+  min-width: 8rem;
+  padding: 1rem 4rem;
+  border-radius: 1rem;
+  background: linear-gradient(to right, #73aeed, #67e5ca);
+  color: #fff;
+  font-weight: bold;
+  font-family: "Poppins";
+  font-size: 1.6rem;
+}
+.box-add .box-add-header {
+  margin-top: 2rem;
+}
+.box-add .box-add-header .box-add-title {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 600;
+  background: linear-gradient(to right, #4fbdf4, #557de3);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.box-add .form-add {
+  padding: 2rem;
+  border-radius: 1rem;
+}
+.box-add .row-add {
+  margin-top: 2rem;
+  gap: 2rem;
+  display: flex;
+}
+.box-add .row-add .col-add {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  width: calc(50% - 1rem);
+}
+.box-add .row-add .col-add .lbl-add {
+  font-size: 1.6rem;
+}
+.box-add .row-add .col-add .form-add-input {
+  padding: 1rem;
+  font-family: "Poppins";
+  font-size: 1.6rem;
+  border: none;
+  border-bottom: 2px solid #64cae1;
+}
+.box-add .row-add .col-add textarea.form-add-input {
+  border: 2px solid #64cae1;
+  border-radius: 1rem;
+  resize: none;
+}
+.box-add .row-add .col-add-cb {
+  align-items: flex-start;
+}
+.box-add .row-add .col-add-cb .toggle__input {
+  display: none;
+}
+.box-add .row-add .col-add-cb .toggle__input:checked + .toggle__label {
+  background: linear-gradient(to right, #61dda5, #a7ed61);
+}
+.box-add .row-add .col-add-cb .toggle__input:checked + .toggle__label .toggle__spin {
+  transform: translateX(6rem);
+}
+.box-add .row-add .col-add-cb .toggle__label {
+  display: inline-block;
+  width: 10rem;
+  height: 4rem;
+  background-color: #e6e3e3;
+  border-radius: 5rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.3s linear;
+}
+.box-add .row-add .col-add-cb .toggle__spin {
+  width: 3rem;
+  height: 3rem;
+  background-color: rgb(66, 165, 236);
+  border-radius: 4rem;
+  transition: all 0.3s linear;
+}
+.box-add .row-add-super {
+  align-items: flex-start;
+}
+.box-add .row-add-super .col-add-img {
+  position: relative;
+}
+.box-add .row-add-super .img-upload {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  object-fit: cover;
+  height: 20rem;
+  border-radius: 1rem;
+}
+.box-add .form-submit {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box-add .form-submit .btn-submit {
+  color: #fff;
+  min-width: 12rem;
+  font-family: "Poppins";
+  padding: 1rem 5rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(to right, #7cc8e9, #708cef);
+}
+
+/*# sourceMappingURL=style_vendor_addfood.css.map */

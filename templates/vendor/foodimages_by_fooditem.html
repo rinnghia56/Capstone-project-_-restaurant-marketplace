@@ -1,0 +1,56 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_menu.css' %}"> {% endblock %}
+{% block breadcrumb %}Food Image{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="box-menu">
+    <div class="box-menu__left">
+        <div class="box-menu__heading">
+            <h2 class="box-menu__title">Menu Categories</h2>
+        </div>
+        <div class="row-menu row-menu-heading">
+            <div class="col-menu col-menu-heading">
+                Index
+            </div>
+            <div class="col-menu col-menu-heading">
+                Name Image
+            </div>
+            <div class="col-menu col-menu-heading">
+                Food
+            </div>
+            <div class="col-menu col-menu-heading">
+                Delete
+            </div>
+        </div>
+        {% for food_image in food_images %}
+        <div class="row-menu">
+            <div class="col-menu">
+                {{ forloop.counter }}
+            </div>
+            <div class="col-menu">
+                <img src="{{food_image.image.url}}" alt="" style="width: 100%; height: 100px; object-fit: cover;"> 
+            </div>
+            <div class="col-menu">
+                <a href="#!" style="line-height: 1.5;color: #212121;font-family: sans-serif;">{{food_image.food_item.food_title}}</a>
+            </div>
+            <div class="col-menu">
+                <a href="{% url 'delete_image_food' food_image.id %}" class="menu-btn btn-delete"><i class="fas fa-trash"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="box-menu__right">
+        <div class="box-menu__heading">
+            <h2 class="box-menu__title">Add</h2>
+        </div>
+
+       <div class="box-add">
+            <a class="btn-add" href="{% url 'add_image_food'  food_item.id %}">
+                Add Image
+            </a>
+       </div>
+    </div>
+</div>
+{% include 'includes/alerts.html'%}
+{% endblock %}

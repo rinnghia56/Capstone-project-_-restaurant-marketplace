@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml" lang="en">
+
+<head><link rel="stylesheet" type="text/css" hs-webfonts="true" href="https://fonts.googleapis.com/css?family=Lato|Lato:i,b,bi">
+    <meta property="og:title" content="Email template">  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <style type="text/css">
+      #email {
+        margin: auto;
+        width: 800px;
+        background-color: white;
+      }  
+      .activate-btn{
+        font: inherit;
+        background-color: #C33332;
+        border: none;
+        padding: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 900;
+        border-radius: 5px; 
+        text-decoration: none;
+      }      
+    </style>    
+  </head>    
+<body bgcolor="#F5F8FA" style="width: 100%; margin: auto 0; padding:0; font-family:Lato, sans-serif; font-size:16px; color:#33475B; word-break:break-word">
+  
+<div id="email">
+  <table role="presentation" width="100%">
+    <tr>
+    <td  align="center" style="color: white;">
+     <img alt="Logo" src="https://i.pinimg.com/originals/4e/95/ff/4e95ff2406e7914e70cbbba6dd9c51d2.jpg" width="400px" height="200px" style="object-fit: cover;" align="middle">
+      </td>
+  </table>
+
+  <table bgcolor="#EAF0F6" width="100%" role="presentation" border="0" cellpadding="0" cellspacing="10px" style="padding: 30px 30px 0px 60px;">
+    <tr>
+        <td>
+            <h2 style="text-align:center;">Thank you for using our services.</h2>
+            <p>Review your order information below.</p>
+        </td>
+    </tr>
+    <tr>
+        <td>Order date: {{ order.created_at }}</td>
+    </tr>
+    <tr>
+        <td>Order number: {{ order.order_number }}</td>
+    </tr>
+    <tr>
+        <td>Payment method: {{ order.payment_method }}</td>
+    </tr>
+    <tr>
+        <td>Transaction ID: {{ order.payment }}</td>
+    </tr>
+    <tr>
+        <td>Shipping address: {{ order.address }}</td>
+    </tr>
+  </table>
+
+  <!-- Ordered food table -->
+  <table bgcolor="#EAF0F6" width="100%" role="presentation" border="0" cellpadding="0" cellspacing="10px" style="padding: 30px 30px 20px 60px;">
+
+    <tbody>
+        <tr>
+            <th style="text-align: left;">Food Item</th>
+            <th>Qty</th>
+            <th>Price</th>
+        </tr>
+
+        {% for food in ordered_food_to_vendor %}
+        <tr>
+            <td><p style="margin: 0;">{{ food.fooditem }}</p>
+            <small><a href="http://{{ domain }}{% url 'vendor_detail' food.fooditem.vendor.vendor_slug %}" style="color:#ccc;">{{ food.fooditem.vendor.vendor_name }}</a></small>
+            </td>
+            <td style="text-align: center;">{{ food.quantity }}</td>
+            <td style="text-align: center;">${{ food.price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+  </table>
+
+  <!-- Order amounts -->
+  <table bgcolor="#EAF0F6" width="100%" role="presentation" border="0" cellpadding="0" cellspacing="10px" style="padding: 0px 30px 60px 60px;">
+    <tbody>
+        <tr>Subtotal: ${{ vendor_subtotal }}</tr>
+        <tr>Shipping fee: ${{ vendor_shipping_fee }}</tr>
+        <tr>Shipping distance: {{ vendor_shipping_distance }} Km</tr>
+        <tr>Grand total: ${{ vendor_grand_total }}</tr>
+    </tbody>
+  </table>
+
+
+  <table role="presentation" bgcolor="#C33332" width="100%">
+      <tr>
+        <td align="center" style="padding: 15px 15px; color: #fff;">
+          <p>FoodOnline</p>
+          <a href="http://{{domain}}" style="color:#fff;">Visit Website</a>      
+        </td>
+      </tr>
+  </table> 
+</div>
+</body>
+</html>

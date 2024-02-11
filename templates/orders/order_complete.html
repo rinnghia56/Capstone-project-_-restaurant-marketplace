@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/style_system_ordercomplete.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="order-complete">
+        <h1 class="title-order">
+            <span>Thanh you for your order</span>
+        </h1>
+        <div class="header-complete">
+            <div class="img-complete">
+                <img src="{% static 'img/complete-icon.png' %}" alt=""/>
+            </div>
+            <h2 class="title-header-order">
+                Congratulations! Your order has been placed
+            </h2>
+            <p class="desc-header-order">
+                We will send an email to confirm your order details
+            </p>
+        </div>
+
+        <div class="content-complete">
+            <h2 class="title-content">
+                <span>Hello {{order.name}}</span>
+            </h2>
+            <p class="desc-content">Review your order details below</p>
+
+            <div class="row-info">
+                <div class="col-info">
+                    <p class="info-title">Order Date</p>
+                    <p class="info-desc">{{order.created_at}}</p>
+                </div>
+                <div class="col-info">
+                    <p class="info-title">Order No</p>
+                    <p class="info-desc">{{order.order_number}}</p>
+                </div>
+                <div class="col-info">
+                    <p class="info-title">Payment Method</p>
+                    <p class="info-desc">{{order.payment_method}}</p>
+                </div>
+                <div class="col-info">
+                    <p class="info-title">Transaction ID</p>
+                    <p class="info-desc">{{order.payment.transaction_id}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="order-complete-group">
+            <div class="your-order">
+                {% for item in ordered_food %}
+                <div class="row-order">
+                    <div class="col-img">
+                        <img src="{{ item.fooditem.image.url }}" alt="">
+                    </div>
+                    <div class="col-content">
+                        <a class="name-food" href="#!">{{ item.fooditem }}</a>
+                        <p class="name-restaurant">{{ item.fooditem.vendor }}</p>
+                        <div class="price-and-quantity">
+                            <p class="quantity"><span>quantity: </span>{{ item.quantity }}</p>
+                            <p class="price">$ {{item.fooditem.price}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor%}
+            </div>
+
+            <div class="your-total">
+                <h2 class="title-payment">
+                    <span>Order Summary</span>
+                </h2>
+                <div class="row-text">
+                    <p class="desc">Subtotal</p>
+                    <p class="money">${{subtotal}}</p>
+                </div>
+                <div class="row-text">
+                    <p class="desc">Shipping fee</p>
+                    <p class="money">${{order.total_shipping_fee}}</p>
+                </div>
+                <div class="row-text">
+                    <p class="desc">Total</p>
+                    <p class="money">${{ order.total }}</p>
+                </div>
+                <img src="{% static 'img/thankyou-paid.png' %}" alt="" class="thankyou-paid">
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'includes/footer.html' %}
+{% endblock %}

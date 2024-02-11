@@ -1,0 +1,45 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_addcategory.css' %}"> {% endblock %}
+{% block breadcrumb %}Edit Category{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="box-add">
+    <div class="box-add-back">
+        <button class="btn-back" onclick="history.back()"  style="cursor: pointer;">Back</button>
+    </div>
+
+    <div class="box-add-header">
+        <h2 class="box-add-title" id ="title-add-category">Edit Category</h2>
+    </div>
+
+    <form class="form-add" action="{% url 'edit_category' category.id %}" method="POST">
+        {% csrf_token %}
+        <div class="row-add">
+            <div class="col-add">
+                <label for="" class="lbl-add">Category Name</label>
+                {{form.category_name}}
+            </div>
+        </div>
+        <div class="row-add">
+            <div class="col-add">
+                <label for="" class="lbl-add">Description</label>
+                {{form.description}}
+            </div>
+        </div>
+        <div class="form-submit">
+            <button type="submit" class="btn-submit">
+                Edit Category
+            </button>
+        </div>
+        {% for field in form %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </form>
+</div>
+{% include 'includes/alerts.html'%}
+{% endblock %}

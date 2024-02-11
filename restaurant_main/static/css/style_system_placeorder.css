@@ -1,0 +1,265 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+.place-order {
+  margin: 4rem auto 3rem;
+  width: 80%;
+}
+.place-order .title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #9287fb;
+}
+.place-order .line {
+  margin-top: 1rem;
+  width: 100%;
+  height: 8px;
+  background-image: linear-gradient(to right, rgba(198, 111, 248, 0.8745098039), #63d4ed);
+  border-radius: 999px;
+}
+.place-order .place-order-container {
+  margin-top: 1rem;
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+.place-order .place-order-container .shipping-info {
+  width: calc(65% - 1rem);
+  border: 1px solid #ccc;
+  padding: 2rem 0;
+  border-radius: 1rem;
+}
+.place-order .place-order-container .shipping-info .title-shipping {
+  text-align: center;
+}
+.place-order .place-order-container .shipping-info .title-shipping span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(to right, #56a8de, #50ead0);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.place-order .place-order-container .shipping-info .content-shipping {
+  padding: 0rem 1rem 2rem;
+  margin-top: 2rem;
+  border-bottom: 1px solid #ccc;
+}
+.place-order .place-order-container .shipping-info .content-shipping .text {
+  margin-top: 1.5rem;
+  font-weight: 600;
+  color: #6d7d7e;
+  font-size: 1.8rem;
+}
+.place-order .place-order-container .shipping-info .content-shipping .text span {
+  color: #000;
+  font-weight: 400;
+  font-size: 1.6rem;
+  font-family: "Open Sans", sans-serif;
+}
+.place-order .place-order-container .shipping-info .content-shipping .btn-edit {
+  margin: 2rem 0 0;
+  display: inline-block;
+  min-width: 125px;
+  padding: 1rem 2rem;
+  background: linear-gradient(to right, #69a1ee, #63e8da);
+  font-size: 1.8rem;
+  color: #fff;
+  text-align: center;
+  border-radius: 999px;
+  font-weight: bold;
+  box-shadow: 0px 10px 10px rgba(110, 193, 239, 0.266);
+  transition: all 0.5s linear;
+}
+.place-order .place-order-container .shipping-info .content-shipping .btn-edit:hover {
+  box-shadow: 0px 0px 0px #fff;
+}
+.place-order .place-order-container .shipping-info .payment-method {
+  padding: 1rem 1rem 1.5rem;
+  border-bottom: 1px solid #ccc;
+}
+.place-order .place-order-container .shipping-info .payment-method .title-payment-method span {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(to right, #56a8de, #50ead0);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.place-order .place-order-container .shipping-info .payment-method .text {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #6d7d7e;
+  font-size: 1.8rem;
+}
+.place-order .place-order-container .shipping-info .payment-method .text span {
+  color: #000;
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+.place-order .place-order-container .shipping-info .order-details {
+  padding: 1rem 1rem 1.5rem;
+}
+.place-order .place-order-container .shipping-info .order-details .title-order-details span {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(to right, #56a8de, #50ead0);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order {
+  margin-top: 2rem;
+  width: 100%;
+  height: 472px;
+  overflow: auto;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order::-webkit-scrollbar {
+  width: 5px;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to bottom, #62c9e3, #37e09d);
+  border-radius: 999px;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order .row-order {
+  display: flex;
+  height: 150px;
+  width: 80%;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #f7f7f7;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order .row-order:not(:first-child) {
+  margin-top: 2rem;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order .row-order .col-img {
+  width: 40%;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order .row-order .col-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order .row-order .col-content {
+  width: 60%;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order .row-order .col-content .name-food {
+  font-size: 2rem;
+  color: #130f40;
+  font-weight: bold;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order .row-order .col-content .name-restaurant {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  background-color: #27ae60;
+  color: #fff;
+  font-weight: bold;
+  align-self: flex-start;
+  border-radius: 1rem;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order .row-order .col-content .price-and-quantity {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order .row-order .col-content .price-and-quantity .quantity {
+  color: #27ae60;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.place-order .place-order-container .shipping-info .order-details .your-order .row-order .col-content .price-and-quantity .price {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #27ae60;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+}
+.place-order .place-order-container .payment-info {
+  padding: 2rem 2rem 1rem;
+  width: calc(35% - 1rem);
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+}
+.place-order .place-order-container .payment-info .title-payment {
+  text-align: center;
+}
+.place-order .place-order-container .payment-info .title-payment span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(to right, #56a8de, #50ead0);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.place-order .place-order-container .payment-info .row-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.place-order .place-order-container .payment-info .row-text:not(:first-child) {
+  margin-top: 3rem;
+}
+.place-order .place-order-container .payment-info .row-text .desc span {
+  font-weight: 600;
+  font-size: 2rem;
+  color: transparent;
+  background: linear-gradient(to right, #56a8de, #50ead0);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.place-order .place-order-container .payment-info .row-text .money {
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgb(98, 151, 235);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  min-width: 86px;
+  text-align: center;
+}
+.place-order .place-order-container .payment-info #paypal-button-container {
+  margin-top: 2rem;
+}
+
+.text-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.text-loading span {
+  text-align: center;
+  font-weight: 600;
+  font-size: 2rem;
+  color: transparent;
+  background: linear-gradient(to right, #56a8de, #50ead0);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+.text-loading .load-animation {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 8px solid #fff;
+  border-top-color: #5ebbff;
+  animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*# sourceMappingURL=style_system_placeorder.css.map */

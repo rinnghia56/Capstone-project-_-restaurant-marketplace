@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+
+// variable
+$green: #27ae60;
+$black: #130f40;
+$white: #ffffff;
+$light-color: #666;
+$light-bg: #f7f7f7;
+$border: 0.1rem solid rgba(0, 0, 0, 0.2);
+$box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+$primary: #fa4c53;
+$text-color: #291667;
+
+// function
+@mixin font($size) {
+    font-family: "Satisfy", cursive;
+    font-size: $size;
+    color: $green;
+}
+
+@mixin set_size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin grid($val) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($val, 1fr));
+    gap: 1.5rem;
+}
+
+@mixin maxWidth($val) {
+    @media screen and (max-width: $val) {
+        @content;
+    }
+}
+
+@mixin flexbox(
+    $align: flex-start,
+    $justify: flex-start,
+    $flexdirection: row,
+    $flexwrap: nowrap
+) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $flexdirection;
+    flex-wrap: $flexwrap;
+}
+
+.box-title {
+    margin-top: 2rem;
+    padding: 3.6rem 2.4rem;
+    background: #fff;
+    border-radius: 1rem;
+
+    .box-heading {
+        font-size: 2.4rem;
+        font-weight: 600;
+        position: relative;
+        padding-bottom: 2rem;
+
+        &::after {
+            content: "";
+            position: absolute;
+            @include set_size(3.8rem, 0.7rem);
+            background: #00c889;
+            border-radius: 999px;
+            left: 0;
+            bottom: 0;
+        }
+    }
+}
+
+.group-update-img {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    gap: 2rem;
+
+    .update-img {
+        position: relative;
+        border-radius: 2rem;
+        overflow: hidden;
+
+        .img-upload {
+            height: 30rem;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .form-img {
+            position: absolute;
+            bottom: 3rem;
+            left: 0;
+            text-align: center;
+            width: 100%;
+            .input-img {
+                display: none;
+            }
+
+            .lbl-img {
+                padding: 1rem;
+                border: 2px solid #fff;
+                border-radius: 999px;
+                color: #fff;
+                font-size: 1.8rem;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+}
+
+.form-update {
+    .row-input {
+        margin-top: 3rem;
+        display: flex;
+        gap: 8rem;
+
+        .col-input {
+            width: calc(50% - 4rem);
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+
+            .lbl-input {
+                font-size: 1.8rem;
+            }
+
+            .custom-input {
+                font-size: 1.6rem;
+                font-family: "Poppins";
+                padding: 1rem;
+                border-bottom: 2px solid #58cff1;
+                border-radius: 1rem;
+                background-color: #fff;
+            }
+
+            .twitter-typeahead {
+                display: block;
+                width: 100%;
+            }
+
+            .tt-input {
+                width: 100%;
+                text-transform: capitalize;
+                font-family: "Open Sans", sans-serif;
+            }
+
+            .tt-menu {
+                margin-top: 2.5rem;
+                background-color: rgba(255, 255, 255, 0.89);
+                backdrop-filter: blur(30px);
+                border-radius: 1rem;
+
+                .tt-suggestion {
+                    padding-left: 1rem;
+                    margin-top: 1rem;
+                    font-size: 1.6rem;
+                    line-height: 1.5;
+                    font-family: "Open Sans", sans-serif;
+
+                    &:hover {
+                        background-color: #fff;
+                        cursor: pointer;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+    .form-btn {
+        margin-top: 5rem;
+        display: flex;
+        justify-content: center;
+
+        .btn-update {
+            cursor: pointer;
+            padding: 1.5rem 4rem;
+            min-width: 20rem;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.6rem;
+            border-radius: 999px;
+            background: linear-gradient(to right, #72adf1, #64e5f4);
+        }
+    }
+}

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}Restaurant Website{% endblock %}</title>
+        <!-- reset css -->
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+
+        <!-- Font awesome cdn link  -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        />
+
+        <!-- Favicon -->
+
+        <link rel="shortcut icon" href="https://www.iconarchive.com/download/i99695/sonya/swarm/Fast-Food.ico" type="image/x-icon">
+
+        <!-- Custom css file link  -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+        <!-- JAVASCRIPT -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+        <script src="{% static 'js/search.js' %}"></script>
+
+        <!-- Paypal -->
+        <script src="https://www.paypal.com/sdk/js?client-id={{PAYPAL_CLIENT_ID}}&currency=USD"></script>
+        
+        <!-- Custom css -->
+        {% block style %}{% endblock %}
+    </head>
+
+    <body>
+        {% include 'includes/header.html' %}
+    
+        {% block content %}
+    
+        {% endblock %}
+    
+        {% block footer %}
+
+          {% include 'includes/footer.html' %}
+          
+        {% endblock %}
+      

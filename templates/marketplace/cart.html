@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_system_cart.css' %}"> {% endblock %}
+{% block content %}
+   <!-- Cart -->
+   <section class="shopping-cart-container">
+       <div class="products-container">
+            <h3 class="title">your products</h3>
+
+            <div class="box-container">
+                {% if cart_items %}
+                {% for item in cart_items %}
+                <div class="box" id="cart-item-{{item.id}}">
+                    <i class="fas fa-times delete_cart" data-id="{{ item.id }}" data-url="{% url 'delete_cart' item.id %}"></i>
+                    <img src="{{ item.fooditem.image.url }}" alt="" />
+                    <div class="content">
+                        <h3><a href="#!">{{ item.fooditem }}</a> </h3>
+                        <div class="row-content">
+                            <span> quantity : </span>
+                            <div class="row-qty">
+                                <a href="#!" class="add_to_cart"  data-id="{{ item.fooditem.id }}" data-url="{% url 'add_to_cart' item.fooditem.id %}"><i class="fas fa-plus"></i></a>
+                                <p class="quantity-food" id="qty-{{item.fooditem.id}}">{{item.quantity}}</p>
+                                <a href="#!" class="decrease_cart" data-id="{{ item.fooditem.id }}" id="{{item.id}}" data-url="{% url 'decrease_cart' item.fooditem.id %}"><i class="fas fa-minus"></i></a>
+                            </div>
+                        </div>
+                        <div class="row-content">
+                            <span> price : </span>
+                            <span class="price"> ${{ item.fooditem.price }} </span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+            </div>
+
+            <div id="empty-cart">
+                    <img src="{% static 'img/cart.png'%}" alt="">
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="cart-total">
+        <h3 class="title">cart total</h3>
+
+        <div class="box">
+            <h3 class="subtotal" >subtotal : <span id="subtotal">${{subtotal}}</span></h3>
+            <h3 class="total" >total : <span id="total">${{grand_total}}</span></h3>
+            <a href="{% url 'checkout' %}" class="btn">proceed to checkout</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/style_customer_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_customer_profile.css' %}">
+{% endblock %}
+{% block content %}
+<div class="customer_dashboard">
+    <!-- sidebar -->
+    {% include 'includes/c_sidebar.html' %}
+
+    <div id="content-customer">
+        <!-- cover -->
+        {% include 'customer/cover.html' %}
+        <h2 class="title-info">Profile</h2>
+
+        <div class="box-title">
+            <h2 class="box-heading">Manage your profile</h2>
+        
+            <form class="form-update" action="{% url 'cprofile' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="group-update-img">
+                    <div class="update-img">
+                        {% if profile.profile_picture %}
+                        <img class="img-upload" src="{{profile.profile_picture.url}}" alt="Profile Picture">
+                        {% else %}
+                        <img class="img-upload" src="{% static 'img/img_vendor/restaurant_default.jpg' %}" alt="Profile Picture">
+                        {% endif %}
+                        <div class="form-img">
+                            <label for="profile-picture-img" class="lbl-img">Update Profile Picture <i class="fas fa-upload"></i></label>
+                            {{profile_form.profile_picture}}
+                        </div>
+                    </div>
+                    <div class="update-img">
+                        {% if profile.cover_photo %}
+                        <img class="img-upload" src="{{profile.cover_photo.url}}" alt="Cover Photo">
+                        {% else %}
+                        <img class="img-upload" src="{% static 'img/img_vendor/background_default.jpg' %}" alt="Cover Photo">
+                        {% endif %}
+                        <div class="form-img">
+                            <label for="cover-picture-img" class="lbl-img">Update Cover photo <i class="fas fa-upload"></i></label>
+                            {{profile_form.cover_photo}}
+                        </div>
+                    </div>
+                </div>
+                <label class="text-danger">{{ profile_form.profile_picture.errors }}
+                </label>
+                <div class="row-input">
+                    <div class="col-input">
+                        <label for="" class="lbl-input">First name</label>
+                        {{user_form.first_name}}
+                    </div>
+                    <div class="col-input">
+                        <label for="" class="lbl-input">Last name</label>
+                        {{user_form.last_name}}
+                    </div>
+                </div>
+                <div class="row-input">
+                    <div class="col-input">
+                        <label for="" class="lbl-input">Phone Number</label>
+                        {{user_form.phone_number}}
+                    </div>
+                    <div class="col-input">
+                        <label for="" class="lbl-input">Adddress</label>
+                        {{profile_form.address}}
+                    </div>
+                </div>
+                <div class="row-input">
+                    <div class="col-input">
+                        <label for="" class="lbl-input">Country</label>
+                        {{profile_form.country}}
+                    </div>
+                    <div class="col-input">
+                        <label for="" class="lbl-input">State</label>
+                        {{profile_form.state}}
+                    </div>
+                </div>
+                <div class="row-input">
+                    <div class="col-input">
+                        <label for="" class="lbl-input">City</label>
+                        {{profile_form.city}}
+                    </div>
+                    <div class="col-input">
+                        <label for="" class="lbl-input">Pin Code</label>
+                        {{profile_form.pin_code}}
+                    </div>
+                </div>
+                <div class="row-input">
+                    <div class="col-input">
+                        <label for="" class="lbl-input">Lantitude</label>
+                        {{profile_form.latitude}}
+                    </div>
+                    <div class="col-input">
+                        <label for="" class="lbl-input">Longtitude</label>
+                        {{profile_form.longitude}}
+                    </div>
+                </div>
+        
+                <div class="form-btn">
+                    <button class="btn-update" type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% include 'includes/alerts.html'%}
+<script>
+const menuBar = document.querySelector('.show-bar');
+const sidebar = document.getElementById('sidebar-customer');
+
+menuBar.addEventListener('click', function () {
+    console.log("hello")
+	sidebar.classList.toggle('hide');
+})
+</script>
+<script src="{% static 'js/script_login.js' %}"></script>
+<script src="{% static 'js/c_profile.js' %}"></script>
+{% endblock %}

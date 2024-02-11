@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
+// variable
+$light: #f9f9f9;
+$blue: #3c91e6;
+$light-blue: #cfe8ff;
+$grey: #eee;
+$dark-grey: #aaaaaa;
+$dark: #342e37;
+$red: #db504a;
+$yellow: #ffce26;
+$light-yellow: #fff2c6;
+$orange: #fd7238;
+$light-orange: #ffe0d3;
+// function
+@mixin font($size, $color) {
+    font-family: "Lato";
+    font-size: $size;
+    color: $color;
+}
+
+@mixin set_size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin grid($val) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+    gap: 1.5rem;
+}
+
+@mixin maxWidth($val) {
+    @media screen and (max-width: $val) {
+        @content;
+    }
+}
+
+@mixin flexbox(
+    $align: flex-start,
+    $justify: flex-start,
+    $flexdirection: row,
+    $flexwrap: nowrap
+) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $flexdirection;
+    flex-wrap: $flexwrap;
+}
+// scss
+.box-add {
+    margin-top: 4rem;
+
+    .btn-back {
+        min-width: 8rem;
+        padding: 1rem 4rem;
+        border-radius: 1rem;
+        background: linear-gradient(to right, #73aeed, #67e5ca);
+        color: #fff;
+        font-weight: bold;
+        font-family: "Poppins";
+        font-size: 1.6rem;
+    }
+
+    .box-add-header {
+        margin-top: 2rem;
+
+        .box-add-title {
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 600;
+            background: linear-gradient(to right, #4fbdf4, #557de3);
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+    }
+    .form-add {
+        padding: 2rem;
+        border-radius:1rem;
+    }
+
+    .row-add {
+        margin-top: 2rem;
+        gap: 2rem;
+        display: flex;
+        .col-add {
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+            width: calc(50% - 1rem);
+
+            .lbl-add {
+                font-size: 1.6rem;
+            }
+
+            .form-add-input {
+                padding:1rem;
+                font-family: 'Poppins';
+                font-size: 1.6rem;
+                border: none;
+                border-bottom: 2px solid #64cae1;
+            }
+
+            textarea.form-add-input {
+                border: 2px solid #64cae1;
+                border-radius: 1rem;
+                resize: none;
+            }
+        }
+
+        .col-add-cb {
+            align-items: flex-start;
+            .toggle {
+                &__input {
+                    display: none;
+                    &:checked + .toggle__label {
+                        background: linear-gradient(to right, #61dda5, #a7ed61);
+                        .toggle__spin {
+                            transform: translateX(6rem);
+                        }
+                    }
+                }
+            
+                &__label {
+                    display: inline-block;
+                    @include set_size(10rem, 4rem);
+                    background-color: #e6e3e3;
+                    border-radius: 5rem;
+                    cursor: pointer;
+                    padding: 5px;
+                    transition: all 0.3s linear;
+                }
+                &__spin {
+                    @include set_size(3rem);
+                    background-color: rgb(66, 165, 236);
+                    border-radius: 4rem;
+                    transition: all 0.3s linear;
+                }
+            }
+        }
+    }
+
+    .row-add-super {
+        align-items: flex-start;
+
+        .col-add-img {
+            position: relative;
+        }
+
+        .img-upload {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            object-fit: cover;
+            height:20rem;
+            border-radius: 1rem;
+        }
+    }
+
+    .form-submit {
+        margin-top: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        .btn-submit {
+            color: #fff;
+            min-width: 12rem;
+            font-family: 'Poppins';
+            padding: 1rem 5rem;
+            border-radius: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            background:linear-gradient(to right, #7cc8e9, #708cef);
+        }
+    }
+}

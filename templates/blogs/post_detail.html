@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_blog_detail.css' %}"> {% endblock %}
+{% block content %}
+<div class="post-detail">
+    <h1 class="post-title">{{post.post_title}}</h1>
+    <div class="author">
+        <p class="name-author">by {{post.user.email}}</p>
+        <p>Last Updated: {{post.created_at}}</p>
+    </div>
+    <p class="content">
+        {{post.content |safe}}
+     </p>
+     <img src="{{post.image.url}}" alt="" class="post-img">
+</div>
+{% endblock %}

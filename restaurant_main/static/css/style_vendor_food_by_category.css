@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&family=Open+Sans:wght@400;500;600;700;800&display=swap");
+.box-add {
+  margin-top: 4rem;
+}
+.box-add .btn-back {
+  min-width: 8rem;
+  padding: 1rem 4rem;
+  border-radius: 1rem;
+  background: linear-gradient(to right, #73aeed, #67e5ca);
+  color: #fff;
+  font-weight: bold;
+  font-family: "Poppins";
+  font-size: 1.6rem;
+}
+.box-add .box-add-header {
+  margin-top: 2rem;
+}
+.box-add .box-add-header .box-add-title {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 600;
+  background: linear-gradient(to right, #4fbdf4, #557de3);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.table-data {
+  margin-top: 2rem;
+  background-color: #fff;
+  border-radius: 2rem;
+  padding: 2rem;
+}
+.table-data .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-data .head h3 {
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+.table-data .head .group-icon-filter {
+  display: flex;
+  gap: 1rem;
+}
+.table-data .table-order {
+  margin-top: 2rem;
+  height: 500px;
+  overflow: auto;
+}
+.table-data .table-order::-webkit-scrollbar {
+  width: 8px;
+}
+.table-data .table-order::-webkit-scrollbar-thumb {
+  background-color: #FAACA8;
+  background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);
+  border-radius: 8px;
+}
+.table-data .table-order .row-order {
+  display: flex;
+  align-items: center;
+}
+.table-data .table-order .row-order .col-order {
+  width: 16.6666666667%;
+  text-align: center;
+  padding: 25px 0;
+}
+.table-data .table-order .row-order .col-order .name-food {
+  font-family: "Montserrat", sans-serif;
+  color: #000;
+  line-height: 1.5;
+  font-weight: 500;
+}
+.table-data .table-order .row-order .col-order .status {
+  background: #3c91e6;
+  font-size: 1.4rem;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+.table-data .table-order .row-order .col-order .btn-detail {
+  display: inline-block;
+  min-width: 5rem;
+  font-size: 1.4rem;
+  color: #fff;
+  background-color: rgb(244, 76, 64);
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+.table-data .table-order .row-order:hover {
+  background: #eee;
+}
+.table-data .table-order .row-heading .col-order {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+/*# sourceMappingURL=style_vendor_food_by_category.css.map */

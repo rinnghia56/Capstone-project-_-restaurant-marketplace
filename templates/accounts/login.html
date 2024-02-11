@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- login-form  -->
+<div class="login-form-container">
+    <div class="form-container">
+        <div class="login-img">
+            <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30" centered-slides="true" autoplay-delay="1500" autoplay-disable-on-interaction="false">
+                <swiper-slide><img src="{% static 'img/login-img.jpg' %}" alt="" class="thumb" /></swiper-slide>
+                <swiper-slide><img src="{% static 'img/login-img.jpg' %}" alt="" class="thumb" /></swiper-slide>
+                <swiper-slide><img src="{% static 'img/login-img.jpg' %}" alt="" class="thumb" /></swiper-slide>
+            </swiper-container>
+        </div>
+        <form action="{% url 'login' %}" class="form-fields-set foodbakery-dev-restaurant-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h3>Login form</h3>
+            <input type="email" name="email" placeholder="Enter your email" class="box"/>
+            <input type="password" name="password" placeholder="Enter your password" class="box"/>
+            <input type="submit" value="login now" class="btn" />
+            <p>forget password? <a href="{% url 'forgot_password' %}">click here</a></p>
+            <p>don't have an account? <a href="{% url 'registerUser' %}">create one</a></p>
+        </form>
+    </div>
+</div>
+
+<!-- Load message -->
+{% include 'includes/alerts.html' %}
+{% endblock %} 
+
+{% block footer %}
+<script src="{% static 'js/script_login.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+</body>
+</html>
+{% endblock %}

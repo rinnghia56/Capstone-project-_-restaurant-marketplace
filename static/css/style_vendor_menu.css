@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
+.box-menu {
+  margin-top: 4rem;
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+}
+.box-menu__left, .box-menu__right {
+  background-color: rgba(250, 246, 246, 0.7254901961);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0px 0px 10px rgba(42, 42, 42, 0.186);
+}
+.box-menu__left {
+  width: calc(60% - 2rem);
+  min-height: 50rem;
+}
+.box-menu__right {
+  width: calc(40% - 2rem);
+}
+.box-menu__title {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.box-menu .row-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+  border-radius: 1rem;
+  margin-top: 0.5rem;
+  transition: all 0.3s linear;
+}
+.box-menu .row-menu .col-menu {
+  width: calc(25% - 0.75rem);
+  display: flex;
+  justify-content: center;
+}
+.box-menu .row-menu .col-menu-heading {
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+}
+.box-menu .row-menu:nth-child(even):not(:nth-child(2)) {
+  border-left: 0.7rem solid #3c91e6;
+}
+.box-menu .row-menu:nth-child(odd) {
+  border-left: 0.7rem solid #f3597a;
+}
+.box-menu .row-menu .btn-edit {
+  color: rgb(79, 191, 236);
+}
+.box-menu .row-menu .btn-delete {
+  color: red;
+}
+.box-menu .row-menu:hover {
+  background-color: rgba(231, 236, 237, 0.562);
+}
+.box-menu .row-menu-heading {
+  border-bottom: 1px solid #ccc;
+}
+.box-menu .box-add {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.box-menu .box-add .btn-add {
+  display: block;
+  background-color: lightblue;
+  padding: 1.5rem;
+  color: white;
+  text-align: center;
+  border-radius: 1rem;
+  font-weight: 600;
+  transition: all 0.3s linear;
+}
+.box-menu .box-add .btn-add:hover {
+  opacity: 0.8;
+}
+.box-menu .box-add .btn-add:first-child {
+  background: linear-gradient(to right, #888be2, #59d3f5);
+}
+.box-menu .box-add .btn-add:last-child {
+  background: linear-gradient(to right, #D8B5FF, #88eedf);
+}
+
+/*# sourceMappingURL=style_vendor_menu.css.map */

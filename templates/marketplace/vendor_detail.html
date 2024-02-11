@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_marketplace_restaurant_detail.css' %}"> {% endblock %}
+{% block content %}
+
+        <!-- Product -->
+        <div class="restaurant-banner">
+            <div class="restaurant-banner-container">
+                {% if vendor.user_profile.cover_photo %}
+                    <img src="{{vendor.user_profile.cover_photo.url}}" alt="restaurant" class="bg">
+                {% else %}
+                    <img src="{% static 'img/img_vendor/background_default.jpg' %}" alt="restaurant" class="bg">
+                {% endif %}
+                <div class="context">
+                    {% if vendor.user_profile.profile_picture %}
+                         <img src="{{vendor.user_profile.profile_picture.url}}" alt="restaurant" class="restaurant-img">
+                    {% else %}
+                         <img src="{% static 'img/img_vendor/restaurant_default.jpg' %}" alt="restaurant" class="restaurant-img">
+                    {% endif %}
+                    <div class="text">
+                        <h2 class="restaurant-name">{{vendor.vendor_name}}  {% if not vendor.is_open  %}[Closed]{% endif %}</h2>
+                        <p class="address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{vendor.user_profile.address}}
+                        </p>
+                    </div>
+                </div>
+                <div class="hour-restaurant">
+                    <div class="item-hour-header">
+                        <p> Today 
+                            {% for i in current_opening_hours %}
+                                    {% if i.is_closed %}Closed{% else %}{{ i.from_hour }} - {{ i.to_hour }}{% endif %}
+                            {% endfor %}
+                        </p>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+
+                    <div class="list-hour">
+                        {% for hour in opening_hours %}
+                        <div class="item-hour">
+                            <p>{{ hour }} {% if hour.is_closed %}Closed{% else %}{{ hour.from_hour }} - {{ hour.to_hour }}{% endif %}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-restaurant">
+            <h2 class="title">Menu restaurant</h2>
+            <div class="list-menu">
+                <div class="menu-item active">
+                    <a href="#!" class="text">ALL</a>
+                </div>
+                {% for category in categories %}
+                    <div class="menu-item">
+                        <a href="{% url 'vendor_details_by_menu' vendor.vendor_slug category.slug  %}" class="text">{{category.category_name}}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="product-food">
+            <h2 class="product-heading">Food</h2>
+            <div class="group-food">
+                {% for food in foods %}
+                    <div class="food-item">
+                        <a href="#!"><img src="{{food.image.url}}" alt="" class="food-img"></a>
+                        <div class="food-item-content">
+                            <p class="vendor-name">{{food.vendor.vendor_name}}</p>
+                            <h3 class="name-food"><a href="{% url 'food_detail' food.slug %}">{{food.food_title}}</a></h3>
+                            <div class="row-content">
+                                <p class="price-food">${{food.price}}</p>
+                                <a href="#!"  class="icon-cart add_to_cart" data-id="{{ food.id }}" data-url="{% url 'add_to_cart' food.id %}"><i class="fas fa-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- End Product -->
+
+{% endblock %}
+{% block footer %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{% static 'js/cart.js' %}"></script>
+{% include 'includes/footer.html' %}
+{% endblock %}

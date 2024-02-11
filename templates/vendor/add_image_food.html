@@ -1,0 +1,30 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_addfood.css' %}"> {% endblock %}
+{% block breadcrumb %}Add food{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="box-add">
+    <div class="box-add-back">
+        <button class="btn-back" onclick="history.back()" style="cursor: pointer;">Back</button>
+    </div>
+    <div class="box-add-header">
+        <h2 class="box-add-title" id="title-add-food">Add Image Food</h2>
+    </div>
+    <form class="form-add" action="{% url 'add_image_food' food_item.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- row-1 -->
+         <!-- row-2 -->
+        <div class="row-add">
+            <div class="col-add">
+                <label for="" class="lbl-add">Image</label>
+                {{form.image}}
+            </div>
+        </div>
+        <div class="form-submit">
+            <button type="submit" class="btn-submit">Create Image Food</button>
+        </div>
+    </form>
+</div>
+{% include 'includes/alerts.html'%}
+{% endblock %}

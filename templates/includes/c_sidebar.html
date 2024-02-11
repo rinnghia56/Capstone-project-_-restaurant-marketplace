@@ -1,0 +1,47 @@
+{% load static %}
+<div id="sidebar-customer">
+    <div class="show-bar"> 
+        <i class="fas fa-bars"></i>
+    </div>
+    <a href="#!" class="brand">
+        {% if profile.profile_picture %}
+        <img  src="{{profile.profile_picture.url}}" alt="Profile Picture">
+        {% else %}
+        <img  src="{% static 'img/img_vendor/restaurant_default.jpg' %}" alt="Profile Picture">
+        {% endif %}
+    </a>
+    <ul class="side-menu-customer top">
+        <li class="{% if '/accounts/cusdashboard/' == request.path or '/accounts/customer/' == request.path %}active{% endif %}">
+            <a href="{% url 'customer' %}">
+                <i class="fas fa-columns icon-dashboard"></i>
+                <span class="text">Dashboard</span>
+            </a>
+        </li>
+        <li class="{% if '/my_orders/' in request.path or '/order_detail/' in request.path %}active{% endif %}">
+            <a href="{% url 'customer_my_orders' %}">
+                <i class="fas fa-store icon-dashboard"></i>
+                <span class="text">My Orders</span>
+            </a>
+        </li>
+        <li class="{% if '/profile/' in request.path %}active{% endif %}">
+            <a href="{% url 'cprofile' %}">
+                <i class="far fa-calendar-minus icon-dashboard"></i>
+                <span class="text">Profile Settings</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'forgot_password_customer' %}">
+                <i class="fas fa-hourglass-start icon-dashboard"></i>
+                <span class="text">Change Password</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="side-menu-customer">
+        <li>
+            <a href="{% url  'logout' %}" class="logout icon-dashboard">
+                <i class="fas fa-sign-out-alt icon-dashboard"></i>
+                <span class="text">Sign Out</span>
+            </a>
+        </li>
+    </ul>
+</div>

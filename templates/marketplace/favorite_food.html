@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_system_favorite_food.css' %}"> {% endblock %}
+{% block content %}
+ <!-- favorite food -->
+ <div class="favorite-header">
+    <div class="top-food">
+        <!-- Swiper -->
+        <swiper-container
+            class="mySwiper"
+            pagination="true"
+            pagination-clickable="true"
+            navigation="true"
+            space-between="30"
+            centered-slides="true"
+            autoplay-delay="4000"
+            autoplay-disable-on-interaction="false"
+        >
+         
+            {% for food in highest_rated_items %}
+                <swiper-slide>
+                    <div class="food-item">
+                        <div class="food-image">
+                            <img
+                                src="{{food.image.url}}"
+                                alt=""
+                            />
+                        </div>
+                        <div class="food-content">
+                            <h2 class="food-name">
+                                {{food.food_title}}
+                            </h2>
+                            <div class="stars">
+                                {% with food.rating as range_number %}
+                                {% for i in ""|rjust:range_number %}
+                                <i class="fas fa-star star"></i>
+                                {% endfor %}
+                                {% endwith %}
+                                <p class="review-number"></p>
+                            </div>
+                            <p class="food-desc">
+                                {{food.description}}
+                            </p>
+                            <p class="price">Price ${{food.price}}</p>
+                            <div class="actions">
+                                <a href="#!" class="action add_to_cart" data-id="{{ food.id }}" data-url="{% url 'add_to_cart' food.id %}"
+                                    ><i class="fas fa-shopping-cart"></i
+                                ></a>
+                                <a href="{% url 'food_detail' food.slug %}" class="action"
+                                    ><i class="fas fa-eye"></i
+                                ></a>
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>
+            {% endfor %}
+         
+
+            <div class="autoplay-progress" slot="container-end">
+                <svg viewBox="0 0 48 48">
+                    <circle cx="24" cy="24" r="20"></circle>
+                </svg>
+                <span></span>
+            </div>
+        </swiper-container>
+    </div>
+    <div class="banner-food">
+        <swiper-container
+            class="mySwiper"
+            pagination="true"
+            pagination-clickable="true"
+            navigation="true"
+            space-between="30"
+            centered-slides="true"
+            autoplay-delay="2500"
+            autoplay-disable-on-interaction="false"
+        >
+            <swiper-slide>
+                <img
+                    src="https://vinmec-prod.s3.amazonaws.com/images/20210317_143609_055773_sushi.max-1800x1800.jpg"
+                    alt=""
+                />
+            </swiper-slide>
+            <swiper-slide>
+                <img
+                    src="https://vinmec-prod.s3.amazonaws.com/images/20210317_143609_055773_sushi.max-1800x1800.jpg"
+                    alt=""
+                />
+            </swiper-slide>
+        </swiper-container>
+    </div>
+</div>
+
+<div class="favorite-foodter">
+    <h2 class="title"><span>Favorite food</span></h2>
+    {% if favorite_foods %}
+    <div class="list-food">
+        {% for food in favorite_foods %}
+            <div class="card-food" id ="food-favorite-{{food.id}}">
+                <div class="food-img">
+                    <a href="{% url 'food_detail' food.food_item.slug %}">
+                          <img
+                        src="{{food.food_item.image.url}}"
+                        alt=""
+                        class="thumb"
+                        />
+                    </a>
+                </div>
+                <div class="food-content">
+                    <p class="food-name">
+                        <span><a href="{% url 'food_detail' food.food_item.slug %}">{{food.food_item.food_title}}</a></span>
+                    </p>
+                    <div class="stars">
+                        {% with food.food_item.rating as range_number %}
+                        {% for i in ""|rjust:range_number %}
+                          <i class="fas fa-star star"></i>
+                        {% endfor %}
+                        {% endwith %}
+                        <p class="review-number"></p>
+                    </div>
+                    <p class="price">Price: ${{food.food_item.price}}</p>
+                    <p class="desc">
+                        {{food.food_item.description}}
+                     
+                    </p>
+                    <div class="actions">
+                        <a href="#!" class="action delete_favorite_food"  data-id="{{ food.id }}" data-url="{% url 'remove_food_favorite' food.id %}"
+                            ><i class="fas fa-times-circle"></i></a>
+                        <a href="#!" class="action add_to_cart" data-id="{{ food.food_item.id }}" data-url="{% url 'add_to_cart' food.food_item.id %}"
+                            ><i class="fas fa-shopping-cart"></i
+                        ></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-food">
+        <h2 class="title-no-food">You haven't added any favorite food yet.</h2>
+        <img src="https://cdn3d.iconscout.com/3d/premium/thumb/empty-box-6219421-5102419.png" alt="">
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block footer %}
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+      const progressCircle = document.querySelector(
+          ".autoplay-progress svg"
+      );
+      const progressContent = document.querySelector(
+          ".autoplay-progress span"
+      );
+
+      const swiperEl = document.querySelector("swiper-container");
+      swiperEl.addEventListener("autoplaytimeleft", (e) => {
+          const [swiper, time, progress] = e.detail;
+          progressCircle.style.setProperty("--progress", 1 - progress);
+          progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+      });
+  </script>
+  <script src="{% static 'js/cart.js' %}"></script>
+  <script src="{% static 'js/food_favorite.js' %}"></script>
+{% include 'includes/footer.html' %}
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_orders.css' %}"> {% endblock %}
+{% block breadcrumb %}Orders{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+   <!-- Order -->
+   <div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>Recent Orders</h3>
+            <div class="group-icon-filter">
+                <i class="fas fa-search bx"></i>
+                <i class="fas fa-filter bx"></i>
+            </div>
+        </div>
+
+        <div class="table-order">
+            <div class="row-heading row-order">
+                <p class="col-order">Order</p>
+                <p class="col-order">Name</p>
+                <p class="col-order">Total</p>
+                <p class="col-order">Date Order</p>
+                <p class="col-order">Status</p>
+                <p class="col-order">Action</p>
+            </div>
+
+            {% for order in page_obj  %}
+            <div class="row-order">
+                <p class="col-order">{{order.order_number}}</p>
+                <p class="col-order">{{order.name}}</p>
+                <p class="col-order">{{order.get_total_by_vendor.grand_total}}$</p>
+                <p class="col-order">{{order.created_at}}</p>
+                <p class="col-order">
+                    <span class="status completed"
+                        >{{order.status}}</span
+                    >
+                </p>
+                <p class="col-order">
+                    <a href="{% url 'vendor_order_detail' order.order_number %}" class="btn-detail"
+                        >Detail</a
+                    >
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="pagination">
+            <ul class="context">
+                {% if page_obj.has_previous %}
+                <li>
+                    <a href="?page=1">First</a>
+                </li>
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="#!">{{ page_obj.number }}</a>
+                </li>
+                {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+                <li>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% include 'includes/alerts.html'%}
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} 
+<link rel="stylesheet" href="{% static 'css/style_vendor_addfood.css' %}"> 
+{% endblock %}
+{% block breadcrumb %}Add food{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="box-add">
+    <div class="box-add-back">
+        <button class="btn-back" onclick="history.back()" style="cursor: pointer;">Back</button>
+    </div>
+    <div class="box-add-header">
+        <h2 class="box-add-title" id="title-add-food">Add Food</h2>
+    </div>
+    <form class="form-add" action="{% url 'add_food' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row-add">
+            <div class="col-add">
+                <label for="" class="lbl-add">Category Default</label>
+                {{form.category_default}}
+            </div>
+        </div>
+        <!-- row-1 -->
+        <div class="row-add">
+            <div class="col-add">
+                <label for="" class="lbl-add">Category</label>
+                {{form.category}}
+            </div>
+            <div class="col-add">
+                <label for="" class="lbl-add">Food Title</label>
+                {{form.food_title}}
+            </div>
+        </div>
+        <div class="row-add">
+            <div class="col-add">
+                <label for="" class="lbl-add">Notice</label>
+                {{form.notice}}
+            </div>
+            <div class="col-add">
+                <label for="" class="lbl-add">Ingredients</label>
+                {{form.ingredients}}
+            </div>
+        </div>
+         <!-- row-2 -->
+        <div class="row-add">
+            <div class="col-add">
+                <label for="" class="lbl-add">Price</label>
+                {{form.price}}
+            </div>
+            <div class="col-add">
+                <label for="" class="lbl-add">Image</label>
+                {{form.image}}
+            </div>
+        </div>
+        <!-- row-3 -->
+        <div class="row-add row-add-super">
+            <div class="col-add">
+                <label for="" class="lbl-add">Description</label>
+                {{form.description}}
+            </div>
+            <div class="col-add col-add-img">
+            {% if vendor.user_profile.profile_picture %}
+            <img src="{{ vendor.user_profile.profile_picture.url }}" alt="restaurant" class="img-upload">
+            {% else %}
+            <img src="{% static 'img/img_vendor/restaurant_default.jpg' %}" alt="restaurant" class="img-upload">
+            {% endif %}
+        </div>
+        </div>
+        <!-- row-3 -->
+        <div class="row-add">
+            <div class="col-add col-add-cb">
+                <label for="" class="lbl-add">Is available</label>
+                <div class="toggle">
+                   {{form.is_available}}
+                    <label for="toggle__input" class="toggle__label">
+                        <div class="toggle__spin"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-submit">
+            <button type="submit" class="btn-submit">Create Food</button>
+        </div>
+    </form>
+</div>
+<script>
+    CKEDITOR.replace( 'description' );
+</script>
+{% include 'includes/alerts.html'%}
+{% endblock %}

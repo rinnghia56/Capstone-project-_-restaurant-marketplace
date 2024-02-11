@@ -1,0 +1,75 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} 
+<link rel="stylesheet" href="{% static 'css/style_vendor_comment_by_sentiment.css' %}">
+<style>
+    swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+swiper-slide {
+    text-align: center;
+    font-size: 1.8rem;
+    background: #fff;
+}
+</style>
+ {% endblock %}
+{% block breadcrumb %}Sentiment{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="main-view-comment">
+    <div class="view-comment-left">
+        <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30"
+        centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
+        {% for food in foods %}
+        <swiper-slide>
+                <div class="food-img">
+                    <img src="{{food.image.url}}" alt="">
+                </div>
+        
+                <div class="food-content">
+                    <h2 class="food-name">{{food.food_title}}</h2>
+                    <div class="stars">
+                        {% with food.rating as range_number %}
+                        {% for i in ""|rjust:range_number %}
+                         <i class="fas fa-star star"></i>
+                        {% endfor %}
+                        {% endwith %}
+                        {% if food.rating_count %}
+                        <p class="review-number">({{food.rating_count}}+ rating)</p>
+                        {% endif %}
+                    </div>
+                    <p class="price">Price: ${{food.price}}</p>
+                    <p class="food-desc"><span>Description:</span> {{food.description}}</p>
+                </div>
+        </swiper-slide> 
+        {% endfor%}
+      </swiper-container>
+    </div>
+    <div class="view-comment-right">
+        <h2 class="title">{{param_value}} Comment</h2>
+
+        <div class="list-comment">
+            {% for comment in comments %}
+                <div class="comment-item">
+                    <div class="user-img">
+                            <img src="{{comment.food_item.image.url}}" alt="">
+                    </div>
+
+                    <div class="comment-content">
+                        <div class="comment-title">
+                            <span class="user-name">{{comment.user.first_name}} {{comment.user.last_name}}</span> 
+                            <p class="comment-time"><i class="far fa-clock"></i> {{comment.created_at}}</p>
+                        </div>
+                        <p class="comment-desc">{{comment.text}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+{% endblock %}

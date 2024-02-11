@@ -1,0 +1,67 @@
+{% extends 'base_vendor.html'%}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_vendor_food_by_category.css' %}"> {% endblock %}
+{% block breadcrumb %}Add food{% endblock %}
+{% block down_load_pdf %}{% endblock %}
+{% block content %}
+<div class="box-add">
+    <div class="box-add-back">
+        <button class="btn-back" onclick="history.back()" style="cursor: pointer;">Back</button>
+    </div>
+    <div class="box-add-header">
+        <h2 class="box-add-title" id="title-add-food">List food of {{category.category_name}}</h2>
+    </div>
+
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>😜</h3>
+                <div class="group-icon-filter">
+                    <i class="fas fa-search bx"></i>
+                    <i class="fas fa-filter bx"></i>
+                </div>
+            </div>
+    
+            <div class="table-order">
+                <div class="row-heading row-order">
+                    <p class="col-order">Index</p>
+                    <p class="col-order">Name</p>
+                    <p class="col-order">Price</p>
+                    <p class="col-order">Date Created</p>
+                    <p class="col-order">Status</p>
+                    <p class="col-order">Action</p>
+                </div>
+    
+                {% for food in fooditems %}
+                <div class="row-order">
+                    <p class="col-order">{{ forloop.counter }}</p>
+                    <p class="col-order"><a href="{% url 'food_detail' food.slug %}" class="name-food">{{ food }}</a></p>
+                    <p class="col-order">{{ food.price }}$</p>
+                    <p class="col-order">{{food.created_at}}</p>
+                    <p class="col-order">
+                        <span class="status completed">
+                            {% if food.is_available %}
+                                    Available
+                            {% else %}
+                                    Not Available
+                            {% endif %}
+                        </span>
+                    </p>
+                    <p class="col-order">
+                        <a href="{% url 'edit_food' food.id %}" class="btn-detail"
+                            ><i class="fas fa-edit"></i></a
+                        >
+                        <a href="{% url 'delete_food' food.id %}" class="btn-detail"
+                            ><i class="fas fa-trash"></i></a
+                        >
+                        <a href="{% url 'view_image' food.id %}" class="btn-detail"
+                        ><i class="fas fa-images"></i></a>
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'includes/alerts.html'%}
+{% endblock %}

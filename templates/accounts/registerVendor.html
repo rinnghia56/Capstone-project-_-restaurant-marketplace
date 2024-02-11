@@ -1,0 +1,112 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block title %}Restaurant Website{% endblock %}
+{% block content %}
+  <!-- signup-form  -->
+<div class="signup-vendor-container">
+    <div class="signup-vendor">
+        <div class="signup-vendor__content">
+            <h3 class="form-title">Sign Up</h3>
+            <p class="form-intro">Welcome to food online</p>
+            <form action="{% url 'registerVendor' %}" class="signup-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="signup-form__row">
+                    <!-- Item 1 -->
+                    <div class="signup-form__group">
+                        <label for="name" class="signup-form__label"
+                            >User Name</label
+                        >
+                        {{form.username}}
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="signup-form__group">
+                        <label for="email" class="signup-form__label"
+                            >Email</label
+                        >
+                        {{form.email}}
+                    </div>
+                </div>
+
+                <div class="signup-form__row">
+                    <!-- Item 1 -->
+                    <div class="signup-form__group">
+                        <label for="name" class="signup-form__label"
+                            >First Name</label
+                        >
+                        {{form.first_name}}
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="signup-form__group">
+                        <label for="email" class="signup-form__label"
+                            >Last Name</label
+                        >
+                        {{form.last_name}}
+                    </div>
+                </div>
+
+                <div class="signup-form__row">
+                    <!-- Item 1 -->
+                    <div class="signup-form__group">
+                        <label for="name" class="signup-form__label"
+                            >Password</label
+                        >
+                        {{form.password}}
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="signup-form__group">
+                        <label for="email" class="signup-form__label"
+                            >Comfirm Password</label
+                        >
+                        {{form.confirm_password}}
+                    </div>
+                </div>
+
+                <div class="signup-form__row">
+                    <!-- Item 1 -->
+                    <div class="signup-form__group">
+                        <label for="" class="signup-form__label"
+                            >Restaurant name</label
+                        >
+                        {{v_form.vendor_name}}
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="signup-form__group">
+                        <label for="" class="signup-form__label"
+                            >Restaurant License</label
+                        >
+                        <label for="file__input" class="file-upload"
+                            ><i class="fas fa-upload"></i>Upload file</label
+                        >
+                        {{v_form.vendor_license}}
+                    </div>
+                </div>
+
+                <button class="signup-form__submit" type="submit">
+                    <i class="fa fa-arrow-right"></i>
+                </button>
+                <p class="signup__already">
+                    Already signin have an account ?
+                    <a href="{% url 'login' %}">Signin</a>
+                </p>
+            </form>
+        </div>
+        <div class="signup-vendor__image">
+            <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true" space-between="30" centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
+                <swiper-slide><img src="{% static 'img/register-customer-1.png' %}" alt="" class="thumb" /></swiper-slide>
+                <swiper-slide><img src="{% static 'img/register-customer-2.png' %}" alt="" class="thumb" /></swiper-slide>
+                <swiper-slide><img src="{% static 'img/register-customer-3.png' %}" alt="" class="thumb" /></swiper-slide>
+            </swiper-container>
+        </div>
+    </div>
+</div>
+<!-- Load message -->
+{% include 'includes/alerts.html' %}
+<!-- Load error -->
+{% include 'includes/errors.html' %}
+{% endblock %}
+{% block footer %}
+<script src="{% static 'js/script_login.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+</body>
+</html>
+{% endblock %}

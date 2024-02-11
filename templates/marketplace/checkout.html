@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'css/style_system_checkout.css' %}"> {% endblock %}
+{% block content %}
+<div class="checkout-container">
+    <h2 class="title-checkout">Checkout</h2>
+
+    <form class="checkout-form" method="POST" action="{% url 'place_order'%}" id="form-checkout">
+        {% csrf_token %}
+     <!-- Checkout billing -->
+         <div class="checkout-billing">
+             <div class="row-input">
+                 <div class="col-input">
+                     <label for="" class="lbl-title">First Name</label>
+                     {{ form.first_name }}
+                 </div>
+                 <div class="col-input">
+                     <label for="" class="lbl-title">Last Name</label>
+                     {{ form.last_name }}
+                 </div>
+             </div>
+             <div class="row-input">
+                 <div class="col-input">
+                     <label for="" class="lbl-title">Phone Number</label>
+                     {{ form.phone }}
+                 </div>
+                 <div class="col-input">
+                     <label for="" class="lbl-title">Email Address</label>
+                     {{ form.email }}
+                 </div>
+             </div>
+             <div class="row-input">
+                 <div class="col-input">
+                     <label for="" class="lbl-title">Country</label>
+                     {{ form.country }}
+                 </div>
+                 <div class="col-input">
+                     <label for="" class="lbl-title">State</label>
+                     {{ form.state }}
+                 </div>
+             </div>
+             <div class="row-input">
+                 <div class="col-input">
+                     <label for="" class="lbl-title">City</label>
+                     {{ form.city }}
+                 </div>
+                 <div class="col-input">
+                     <label for="" class="lbl-title">Pin Code</label>
+                     {{ form.pin_code }}
+                 </div>
+             </div>
+             <div class="row-input">
+                 <div class="col-input col-full">
+                     <label for="" class="lbl-title">Address</label>
+                     <input type="hidden" name="lat_checkout" value="" id="id_latitude_checkout">
+                     <input type="hidden" name="lng_checkout" value="" id="id_longitude_checkout">
+                     {{ form.address }}
+                 </div>
+             </div>
+         </div>
+
+     <!-- Your order -->
+
+         <div class="your-order">
+            
+             {% for item in cart_items %}
+                <div class="row-order">
+                    <div class="col-img">
+                        <img src="{{ item.fooditem.image.url }}" alt="">
+                    </div>
+                    <div class="col-content">
+                        <a class="name-food" href="#!">{{ item.fooditem }}</a>
+                        <p class="name-restaurant">{{ item.fooditem.vendor }}</p>
+                        <div class="price-and-quantity">
+                            <p class="quantity"><span>quantity: </span>{{ item.quantity }}</p>
+                            <p class="price">$ {{item.fooditem.price}}</p>
+                        </div>
+                    </div>
+                 </div>
+             {% endfor%}
+         </div>
+
+         <!-- Payment method -->
+
+         <div class="payment">
+             <div class="row-text">
+                 <p class="desc">Subtotal</p>
+                 <p class="money">${{ subtotal }}</p>
+             </div>
+             <div class="row-text">
+                 <p class="desc">Total</p>
+                 <p class="money">${{ grand_total }}</p>
+             </div>
+             <div class="select-method">
+                 <div class="title-select">SELECT PAYMENT METHOD</div>
+                 <div class="group-method">
+                     <!-- Item 1 -->
+                     <label class="method-detail">
+                          <input type="radio" name="payment_method" value="PayPal" class="payment-method">
+                          <img src="{% static 'img/Paypal.png'%}" alt="PayPal" width="100">
+                     </label>
+                 </div>
+                 <p class="alert-select"></p>
+                 <button  class="btn-place-order">PLACE ORDER</button>
+             </div>
+         </div>
+    </form>
+ </div>
+
+{% endblock %}
+
+{% block footer %}
+<script src="{% static 'js/checkout.js' %}"></script>
+{% include 'includes/footer.html' %}
+{% endblock %}

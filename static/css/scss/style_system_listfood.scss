@@ -1,0 +1,291 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+// variable
+$green: #27ae60;
+$black: #130f40;
+$white: #ffffff;
+$light-color: #666;
+$light-bg: #f7f7f7;
+$border: 0.1rem solid rgba(0, 0, 0, 0.2);
+$box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+$primary: #fa4c53;
+$text-color: #291667;
+
+// function
+@mixin font($size) {
+    font-family: "Satisfy", cursive;
+    font-size: $size;
+    color: $green;
+}
+
+@mixin set_size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin grid($val) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+    gap: 1.5rem;
+}
+
+@mixin maxWidth($val) {
+    @media screen and (max-width: $val) {
+        @content;
+    }
+}
+
+@mixin flexbox(
+    $align: flex-start,
+    $justify: flex-start,
+    $flexdirection: row,
+    $flexwrap: nowrap
+) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $flexdirection;
+    flex-wrap: $flexwrap;
+}
+
+.menu-food {
+    margin-top: 1rem;
+    padding: 2rem 2rem;
+    cursor: pointer;
+    .menu-heading {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #575757;
+    }
+
+    .group-menu {
+        margin-top: 4rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 3rem;
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            border-radius: 40% 40%;
+            border-top-right-radius: 12px;
+            border-top-left-radius: 12px;
+            box-shadow: 0 10px 10px rgba(231, 231, 231, 0.74);
+            transition: all 0.8s linear;
+            padding-bottom: 1rem;
+            .menu-img {
+                @include set_size(8rem);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0px 2px 12px 5px rgba(231, 231, 231, 0.74);
+                background-color: #fff;
+                border-radius: 30%;
+                img {
+                    width: auto;
+                    height: 6rem;
+                    object-fit: cover;
+                }
+            }
+
+            span {
+                display: inline-block;
+                width: 60%;
+                text-align: center;
+                a {
+                    font-size: 1.6rem;
+                    color: #000;
+                    font-weight: 500;
+                    line-height: 1.5;
+                    font-family: 'Poppins';
+                }
+            }
+
+            &:hover {
+                .menu-img {
+                    transform: translateY(-20%);
+                }
+            }
+
+            &.active {
+                background-color: rgb(164, 227, 248);
+            }
+        }
+    }
+}
+
+.product-food {
+    margin-top: 4rem;
+    padding: 2rem 2rem;
+    .product-heading {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #575757;
+    }
+
+    .group-food {
+        margin-top: 4rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+        gap: 2rem;
+
+        .food-item {
+            padding: 2rem;
+            box-shadow: 0px 2px 12px 5px rgba(231, 231, 231, 0.74);
+            border-radius: 5%;
+            transition: all 0.3s linear;
+            background-color: #fff;
+
+            .food-img {
+                width: 100%;
+                height: 27rem;
+                object-fit: cover;
+                border-radius: 5%;
+            }
+
+            .vendor-name {
+                margin-top: 1rem;
+                color: #a8a6a9;
+                font-size: 1.4rem;
+                font-weight: bold;
+            }
+
+            .name-food {
+                margin-top: 1rem;
+                font-size: 1.8rem;
+                font-weight: bold;
+
+                a {
+                    color: #171717;
+                }
+            }
+
+            .row-content {
+                margin-top: 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .price-food {
+                font-size: 2rem;
+                border-radius: 1rem;
+                font-weight: bold;
+                color: #077169;
+            }
+
+            .icon-cart {
+                color: #3ba584;
+                font-size: 2.5rem;
+                display: inline-block;
+                padding: 1.5rem;
+                background: #eaf5eb;
+                border-radius: 50%;
+            }
+
+            &:hover {
+                box-shadow: 0px 2px 12px 5px rgba(108, 167, 243, 0.504);
+            }
+        }
+    }
+}
+
+.none-food {
+    width: 70%;
+    border: 1px solid #ccc;
+    margin: 2rem auto;
+    box-shadow: 0px 2px 12px 5px rgba(231, 231, 231, 0.74);
+
+    .heading {
+        font-size: 1.8rem;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .none-food-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        .desc {
+            font-size: 1.8rem;
+            line-height: 1.5;
+        }
+        .img-none {
+            
+            @include set_size(10rem);
+            object-fit: cover;
+        }
+    }
+}
+
+
+
+.pagination {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: flex-end;
+    .context {
+        margin-left: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        li {
+            padding: 1rem 0.5rem;
+            text-align: center;
+            min-width: 4rem;
+            border: 1px solid #c2dce7;
+            border-radius: 0.5rem;
+            transition: all 0.3s linear;
+            &:hover {
+                background-color: #6faeed;
+            }
+            a {
+                color: #000;
+                cursor: pointer;
+                display: block;
+            }
+        }
+    }
+}
+
+
+.banner-food {
+    padding: 2rem;
+ 
+    
+    .row-banner {
+        display: flex;
+        gap: 1.5rem;
+        height: 342px;
+        .banner-big {
+            height: 100%;
+            width: calc(70% - (1.5rem / 2));
+        }
+
+        .group-banner-small {
+            width: calc(30% - (1.5rem / 2));
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .banner-small {
+                height: calc(100% / 3 - (2rem / 3));
+            }
+        }
+
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}

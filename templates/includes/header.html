@@ -1,0 +1,130 @@
+{% load static %}
+<!-- header section start -->
+<header class="header">
+    <a href="{% url 'home' %}" class="logo"> <i class="fas fa-utensils"></i> food </a>
+
+    <nav class="navbar">
+        <a href="{% url 'home' %}">home</a>
+        <a href="{% url 'list_food_for_customer' %}">food</a>
+        <a href="{% url 'marketplace' %}">restaurant</a>
+        <a href="{% url 'about' %}">about</a>
+        <a href="{% url 'foods_favorite' %}">favorite</a>
+        <a href="{% url 'list_blog' %}">blogs</a>
+    </nav>
+
+    <div class="icons">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <div id="search-btn" class="fas fa-search">
+            <ul class="sub-menu">
+                <li>
+                    <a href="#!" onclick="openModal('modal1')"><i class="fas">🍣</i><span>Food Name</span></a>
+                </li>
+                <li>
+                    <a href="#!" onclick="openModal('modal2')"><i class="fas">🌍</i><span>Address</span></a>
+                </li>
+                <li>
+                    <a href="#!" onclick="openModal('modal3')"><i class="fas">🍣 🌍</i><span>Both</span></a>
+                </li>
+            </ul>
+        </div>
+        <div id="location-btn" class="fas fa-map-marker-alt">
+            <form action="{% url 'search_your_location' %}" method="GET" class="your-location" style="display: none;">
+                <input type="hidden" name="lat" value="" id="your_latitude">
+                <input type="hidden" name="lng" value="" id="your_longitude">
+            </form>
+        </div>
+        {% if user.is_authenticated %}
+        <a href="{% url 'cart' %}">
+            <div id="cart-btn" class="fas fa-shopping-cart">
+                <span class="notification" id="cart_counter">{{ cart_count }}</span>
+            </div>
+         </a>
+        {% endif %}
+        <div id="login-btn" class="fas fa-user">
+            <ul class="sub-menu">
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'myAccount' %}"><i class="fas fa-sign-in-alt"></i><span>My Account</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}"><i class="fas fa-registered"></i><span>Logout</span></a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i><span>Login</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'registerUser' %}"><i class="fas fa-registered"></i><span>Register customer</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'registerVendor' %}"><i class="fas fa-registered"></i><span>Register restaurant</span></a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal1 modal">       
+        <div class="modal-container">
+            <form action="{% url 'search_food' %}" method="GET" class="search-bar">
+                <input type="text" placeholder="Food name" name="food_name_search">
+                <button type="submit" class="btn-search"><img src="{% static 'img/search.png' %}" alt=""></button> 
+                <div class="close-modal" onclick="closeModal('modal1')"><i class="fas fa-times"></i></div>
+            </form>
+        </div>
+    </div>
+    <div class="modal2 modal">       
+        <div class="modal-container">
+            <form action="{% url 'search_address' %}" method="GET" class="search-bar" id="search_form_address">
+                <div class="row-input row-search">
+                    <input type="text" placeholder="Address" name="address_search"  id="address_search_heading">
+                    <input type="hidden" name="lat" value="" id="id_latitude">
+                    <input type="hidden" name="lng" value="" id="id_longitude">
+                    <button class="btn-search-2 btn-search" type="submit"><img src="{% static 'img/search.png' %}" alt=""></button>
+                </div>
+                <div class="row-input row-distance">
+                    <select name="radius" class="select-distance">
+                        <option value="" selected>Choose Radius</option>
+                        <option value="5">5 km</option>
+                        <option value="10">10 km</option>
+                        <option value="15">15 km</option>
+                        <option value="25">25 km</option>
+                        <option value="50">50 km</option>
+                        <option value="75">75 km</option>
+                        <option value="100">100 km</option>
+                    </select>
+                </div>
+                <div class="close-modal" onclick="closeModal('modal2')"><i class="fas fa-times"></i></div>
+            </form>
+        </div>
+    </div>
+    <div class="modal3 modal">       
+        <div class="modal-container">
+            <form action="{% url 'search_both' %}" method="GET" class="search-bar" id="search_form_address_2">
+                <div class="row-input">
+                    <input type="text" placeholder="FoodName" name="food_name_search">
+                </div>
+                <div class="row-input row-search">
+                    <input type="text" placeholder="Address" name="address_search"  id="address_search_heading_2">
+                    <input type="hidden" name="lat" value="" id="id_latitude_2">
+                    <input type="hidden" name="lng" value="" id="id_longitude_2">
+                    <button class="btn-search-3 btn-search" type="submit"><img src="{% static 'img/search.png' %}"  alt=""></button>
+                </div>
+                <div class="row-input row-distance">
+                    <select name="radius" class="select-distance">
+                        <option value="" selected>Choose Radius</option>
+                        <option value="5">5km</option>
+                        <option value="10">10km</option>
+                        <option value="15">15km</option>
+                        <option value="25">25km</option>
+                        <option value="50">50km</option>
+                        <option value="75">75km</option>
+                        <option value="100">100km</option>
+                    </select>
+                </div>
+                <div class="close-modal" onclick="closeModal('modal3')"><i class="fas fa-times"></i></div>
+            </form>
+        </div>
+    </div>
+</header>
+<!-- header section end -->

@@ -1,0 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+// variable
+$green: #27ae60;
+$black: #130f40;
+$white: #ffffff;
+$light-color: #666;
+$light-bg: #f7f7f7;
+$border: 0.1rem solid rgba(0, 0, 0, 0.2);
+$box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.05);
+$primary: #fa4c53;
+$text-color: #291667;
+
+// function
+@mixin font($size) {
+    font-family: "Satisfy", cursive;
+    font-size: $size;
+    color: $green;
+}
+
+@mixin set_size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin grid($val) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($val, 1fr));
+    gap: 1.5rem;
+}
+
+@mixin maxWidth($val) {
+    @media screen and (max-width: $val) {
+        @content;
+    }
+}
+
+@mixin flexbox(
+    $align: flex-start,
+    $justify: flex-start,
+    $flexdirection: row,
+    $flexwrap: nowrap
+) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $flexdirection;
+    flex-wrap: $flexwrap;
+}
+
+
+.place-order {
+    margin:4rem auto 3rem;
+    width: 80%;
+
+    .title {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: bold;
+        color: #9287fb;
+    }
+
+    .line {
+        margin-top: 1rem;
+        width: 100%;
+        height: 8px;
+        background-image: linear-gradient( to right, #c66ff8df,#63d4ed);
+        border-radius: 999px;
+    }
+
+    .place-order-container {
+        margin-top: 1rem;
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+        .shipping-info {
+            width: calc(65% - 1rem);
+            border: 1px solid #ccc;
+            padding: 2rem 0;
+            border-radius:1rem;
+
+            .title-shipping {
+                text-align: center;
+                span {
+                    font-size: 2.5rem;
+                    font-weight: bold;
+                    color: transparent;
+                    background:linear-gradient(to right, #56a8de, #50ead0);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                }
+            }
+
+            .content-shipping {
+                padding: 0rem 1rem 2rem;
+                margin-top: 2rem;
+                border-bottom: 1px solid #ccc;
+                .text {
+                    margin-top: 1.5rem;
+                    font-weight: 600;
+                    color: #6d7d7e;
+                    font-size: 1.8rem;
+
+                    span {
+                        color: #000;
+                        font-weight: 400;
+                        font-size: 1.6rem;
+                        font-family: "Open Sans", sans-serif;
+                    }
+                }
+
+                .btn-edit {
+                    margin: 2rem 0 0;
+                    display: inline-block;
+                    min-width: 125px;
+                    padding:1rem 2rem;
+                    background:linear-gradient(to right,#69a1ee, #63e8da);
+                    font-size: 1.8rem;
+                    color: #fff;
+                    text-align: center;
+                    border-radius: 999px;
+                    font-weight: bold;
+                    box-shadow: 0px 10px 10px rgba(110, 193, 239, 0.266);
+                    transition: all 0.5s linear;
+
+                    &:hover {
+                        box-shadow: 0px 0px 0px #fff;
+                    }
+                }
+            }
+
+            .payment-method {
+                padding: 1rem 1rem 1.5rem;
+                border-bottom: 1px solid #ccc;
+                .title-payment-method {
+                    span {
+                        font-size: 2.2rem;
+                        font-weight: bold;
+                        color: transparent;
+                        background:linear-gradient(to right, #56a8de, #50ead0);
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                    }
+                }
+
+                .text {
+                    margin-top: 1rem;
+                    font-weight: 600;
+                    color: #6d7d7e;
+                    font-size: 1.8rem;
+
+                    span {
+                        color: #000;
+                        font-weight: 400;
+                        font-size: 1.6rem;
+                    }
+                }
+
+            }
+
+            .order-details {
+                padding: 1rem 1rem 1.5rem;
+                .title-order-details {
+                    span {
+                        font-size: 2.2rem;
+                        font-weight: bold;
+                        color: transparent;
+                        background:linear-gradient(to right, #56a8de, #50ead0);
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                    }
+                }
+
+                .your-order {
+                    margin-top:2rem;
+                    width: 100%;
+                    height: 472px;
+                    overflow: auto;
+        
+                    &::-webkit-scrollbar {
+                        width: 5px;
+                    }
+        
+                    &::-webkit-scrollbar-thumb {
+                        background-image: linear-gradient(to bottom, #62c9e3, #37e09d);
+                        border-radius: 999px;
+                    }
+        
+                    .row-order {
+                        display: flex;
+                        height: 150px;
+                        width: 80%;
+                        border-radius: 1rem;
+                        overflow: hidden;
+                        background-color: #f7f7f7;
+                        
+        
+                        &:not(:first-child) {
+                            margin-top: 2rem;
+                        }
+        
+                        .col-img {
+                            width: 40%;
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                            }
+                        }
+        
+                        .col-content {
+                            width: 60%;
+                            padding: 1.5rem 2rem;
+                            display:flex;
+                            flex-direction:column;
+                            .name-food {
+                                font-size: 2rem;
+                                color: #130f40;
+                                font-weight: bold;
+                            }
+        
+                            .name-restaurant {
+                                display: inline-block;
+                                margin-top: 2rem;
+                                padding: 0.5rem 1rem;
+                                background-color: #27ae60;
+                                color: #fff;
+                                font-weight: bold;
+                                align-self:flex-start;
+                                border-radius: 1rem;
+                            }
+        
+                            .price-and-quantity {
+                                margin-top: 2rem;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+        
+                                .quantity {
+                                    color: #27ae60;
+                                    font-size: 1.6rem;
+                                    font-weight: bold;
+                                }
+        
+                                .price {
+                                    color: #fff;
+                                    font-size: 2rem;
+                                    font-weight: bold;
+                                    background-color: #27ae60;
+                                    padding: 0.5rem 1rem;
+                                    border-radius: 999px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+        
+        .payment-info {
+            padding: 2rem 2rem 1rem;
+            width: calc(35% - 1rem);
+            border: 1px solid #ccc;
+            border-radius:1rem;
+
+            .title-payment{
+                text-align: center;
+                span {
+                    font-size: 2.5rem;
+                    font-weight: bold;
+                    color: transparent;
+                    background:linear-gradient(to right, #56a8de, #50ead0);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                }
+            }
+
+            .row-text {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &:not(:first-child) {
+                    margin-top: 3rem;
+                }
+
+                .desc {
+                    
+                    span {
+                        font-weight: 600;
+                        font-size: 2rem;
+                        color: transparent;
+                        background:linear-gradient(to right, #56a8de, #50ead0);
+                        background-clip: text;
+                        -webkit-background-clip: text;
+                    }
+                }
+
+                .money {
+                    display: inline-block;
+                    font-size: 2rem;
+                    font-weight: bold;
+                    color: #fff;
+                    background-color: rgb(98, 151, 235);
+                    padding: 0.5rem 1rem;
+                    border-radius: 999px;
+                    min-width: 86px;
+                    text-align: center;
+                }
+            }
+
+            #paypal-button-container {
+                margin-top: 2rem;
+            }
+
+        }
+    }
+}
+
+.text-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    
+    span {
+    text-align: center;
+    font-weight: 600;
+    font-size: 2rem;
+    color: transparent;
+    background: linear-gradient(to right, #56a8de, #50ead0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    }
+
+    .load-animation {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border:8px solid #fff;
+        border-top-color: #5ebbff;
+        animation:spinner 1s infinite linear;
+    }
+}
+
+
+@keyframes spinner {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
